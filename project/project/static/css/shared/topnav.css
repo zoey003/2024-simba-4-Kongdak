@@ -1,0 +1,27 @@
+
+
+#root {
+  height: 100%;
+  width: 100%;
+  background-color: orange;
+}
+
+.container{
+  width: 320px;
+height: 568px;
+border: 1px solid #000;
+background: #FFF;
+}
+
+.nav{
+  display: inline-flex;
+align-items: center;
+gap: 55px;
+}
+
+svg{
+  width: 12px;
+height: 16px;
+stroke-width: 2px;
+stroke: #000;
+}
