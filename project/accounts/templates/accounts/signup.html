@@ -17,29 +17,39 @@
                   <div class="frame1">
                 <div>아이디</div>
                 <input type="text" name="username" id="username">
-                <div>사용 가능한 아이디 입니다!</div>
+                <div>중복되는 아이디 입니다</div>
               </div>
 
              <div class="frame2">
             <div>비밀번호</div>
             <input type="password" name="password" id="password">
             <div>*영문/숫자 포함 8글자 이상 입력해주세요.</div>
-                
-            
-      
-                  </div>
-                </div>
+           </div>
+
+
+           <div class="frame3">
+            <div>이름</div>
+            <input type="text" name="nickname" id="nickname">
+           </div>
+
+           <div class="frame4">
+            <div>학과</div>
+            <input type="text" name="department" id="department" placeholder="Ex.경제학과">
+           </div>
+
+
+            </div>
               
           
-          
-              <div><label class="label">비밀번호 확인</label>
-                <div class="frame">
-                  <input type="password" name="password2" id="password-confirm">
-              <div class="none">비밀번호가 일치하지 않습니다!</div>
-               </div>
-              </div>
+          <div class="frame5">
+            <input type="submit" id="button" value="완료" disabled>
+          </div>
+        </form>
+
+
+      </div>
             
-      
+        <!--
              
             </div>
             <p id="last"></p>
@@ -47,6 +57,6 @@
           <div class="su">
           <label id="su"><input type="button" id="button" disabled>가입하기</label></form>
         </div> 
-        <!-- 폼 -->
+        폼 -->
    
       {% endblock %}
