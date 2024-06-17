@@ -4,25 +4,28 @@
   rel="stylesheet"
   type="text/css"
   href="{% static 'css/accounts/signup.css'%}"/>
-    <div class="container">
-        <div class="body">
+  
+   
           <div class="signup">
-            <div>회원가입</div>
+        
          
-            <div class="inputlist">
+        
               <form action="{% url 'accounts:signup' %}" method="POST" id="form">
                 {% csrf_token %}
-                <div><label class="label">아이디</label>
-                <input type="text" name="username" id="username"></div>
-                <div><label class="label">비밀번호</label>
-                  <div class="frame">
-                  <input type="password" name="password" id="password">
+                <div class="inputlist">
+
+                  <div class="frame1">
+                <div>아이디</div>
+                <input type="text" name="username" id="username">
+                <div>사용 가능한 아이디 입니다!</div>
+              </div>
+
+             <div class="frame2">
+            <div>비밀번호</div>
+            <input type="password" name="password" id="password">
+            <div>*영문/숫자 포함 8글자 이상 입력해주세요.</div>
                 
-                  <ul>
-                    <li>비밀번호를 8자 이상으로 작성해주세요.</li>
-                    <li>영문 대소문자, 숫자, 특수문자를 하나 이상 포함해주세요.</li>
-                    <li>사용가능 특수문자 @ ! ? - _</li>
-                  </ul>
+            
       
                   </div>
                 </div>
@@ -45,5 +48,5 @@
           <label id="su"><input type="button" id="button" disabled>가입하기</label></form>
         </div> 
         <!-- 폼 -->
-      </div>
+   
       {% endblock %}

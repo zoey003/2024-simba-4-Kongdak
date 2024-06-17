@@ -1,0 +1,19 @@
+.signup{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px red;
+}
+
+.inputlist{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap:30px;
+    margin-top: 50px;
+}
+
+.frame1{
+    
+}
