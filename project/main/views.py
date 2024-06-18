@@ -22,7 +22,7 @@ def create(request): # 글 create
     new_post = Post()
 
     new_post.title = request.POST['title']
-    new_post.body=request.POST['writer']
+    new_post.body=request.POST['body']
     new_post.pub_date=timezone.now()
 
     new_post.save()
