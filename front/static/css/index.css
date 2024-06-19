@@ -12,7 +12,7 @@ html {
   display: flex;
   justify-content: center;
   padding: 0;
-  height: 100svh;
+  min-height: 100svh;
 }
 body {
   width: 430px;
@@ -24,4 +24,15 @@ body {
 #root {
   height: 100%;
   width: 100%;
+}
+
+@font-face {
+  font-family: "Sagak-sagak";
+  src: url("../font/Sagak-sagak.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Sagak-sagak" !important;
 }
