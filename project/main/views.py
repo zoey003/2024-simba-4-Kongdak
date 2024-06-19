@@ -12,7 +12,7 @@ def mainpage(request): #메인페이지 랜더링
 def category_posts(request, category_id): # 카테고리 글 목록 함수
     category = get_object_or_404(Category, id=category_id)
     posts = Post.objects.filter(category=category)
-    return render(request, 'category_posts.html', {'category': category, 'posts': posts})
+    return render(request, 'main/category_posts.html', {'category': category, 'posts': posts})
 
 def post_detail(request, post_id): # 글 본문 함수
     post = get_object_or_404(Post, pk=post_id)
