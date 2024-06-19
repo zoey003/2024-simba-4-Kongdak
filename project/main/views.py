@@ -6,13 +6,53 @@ from django.utils import timezone
 
 from .models import Post
 # Create your views here.
-def mainpage(request): #메인페이지 랜더링
-    return render(request, 'main/mainpage.html')
+def firstpage(request):
+    return render(request, 'main/firstpage.html')
 
-def category_posts(request, category_id): # 카테고리 글 목록 함수
-    category = get_object_or_404(Category, id=category_id)
-    posts = Post.objects.filter(category=category)
-    return render(request, 'main/category_posts.html', {'category': category, 'posts': posts})
+def mainpage(request):
+    if not request.user.is_authenticated:
+        return redirect('firstpage')
+    return render(request, 'main/mainpage.html', {'user': request.user})
+
+def secondpage_a(request):
+    if not request.user.is_authenticated:
+        return redirect('firstpage')
+    return render(request, 'main/secondpage_a.html')
+
+def secondpage_b(request):
+    if not request.user.is_authenticated:
+        return redirect('firstpage')
+    return render(request, 'main/secondpage_b.html')
+
+def secondpage_c(request):
+    if not request.user.is_authenticated:
+        return redirect('firstpage')
+    return render(request, 'main/secondpage_c.html')
+
+@login_required
+def categorypage(request, category, subcategory):
+    posts = Post.objects.filter(category=category, subcategory=subcategory)
+    return render(request, 'main/categorypage.html', {'category': category, 'subcategory': subcategory, 'posts': posts})
+
+@login_required
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'main/post_detail.html', {'post': post})
+
+@login_required
+def create_post(request, category, subcategory):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.category = category
+            post.subcategory = subcategory
+            post.save()
+            return redirect('categorypage', category=category, subcategory=subcategory)
+    else:
+        form = PostForm()
+    return render(request, 'main/create_post.html', {'form': form, 'category': category, 'subcategory': subcategory})
 
 def post_detail(request, post_id): # 글 본문 함수
     post = get_object_or_404(Post, pk=post_id)

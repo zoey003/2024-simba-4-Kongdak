@@ -4,12 +4,13 @@ from .views import *
 app_name = "main"
 
 urlpatterns=[
-    path('',mainpage,name='mainpage'),
-    path('new-post',new_post,name='new-post'),
-    path('create',create,name='create'),
-    path('edit/<int:id>',edit, name='edit'),
-    path('update/<int:id>',update,name='update'),
-    path('delete/<int:id>',delete,name='delete'),
-    path('category/<int:category_id>/',category_posts,name='category_post'),
-    path('post/<int:post_id>', post_detail, name='post_detail'),
+    path('', views.firstpage, name='firstpage'),
+    path('mainpage/', views.mainpage, name='mainpage'),
+    path('secondpage_a/', views.secondpage_a, name='secondpage_a'),
+    path('secondpage_b/', views.secondpage_b, name='secondpage_b'),
+    path('secondpage_c/', views.secondpage_c, name='secondpage_c'),
+    path('category/<str:category>/<str:subcategory>/', views.categorypage, name='categorypage'),
+    path('post/<int:post_id>/', views.post_detail, name='post_detail'),
+    path('category/<str:category>/<str:subcategory>/create/', views.create_post, name='create_post'),
+    path('accounts/', include('accounts.urls')),
 ]
