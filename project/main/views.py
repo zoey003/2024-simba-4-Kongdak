@@ -54,12 +54,13 @@ def secondpage_c(request):
     return render(request, 'main/secondpage_c.html')
 
 def categorypage(request, category, subcategory):
-    posts = Post.objects.filter(category=category, subcategory=subcategory)
-    return render(request, 'main/categorypage.html', {
+    posts = Post.objects.filter(author = request.user,category=category, subcategory=subcategory)
+    context ={
         'category': category,
         'subcategory': subcategory,
         'posts': posts,
-    })
+    }
+    return render(request, 'main/categorypage.html',context)
 
 @login_required #데코레이터: 로그인된 상태에서만 함수 호출, 로그인 되지 않은 경우 로그인 페이지로 리다이렉트
 def post_detail(request, category, subcategory, post_id):
