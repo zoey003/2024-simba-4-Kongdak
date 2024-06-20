@@ -3,8 +3,12 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    category= models.CharField(max_length=10)
-    subcategory = models.CharField(max_length=10)
+    subcategory = models.CharField(max_length=100)
+    maincategory = models.CharField(max_length=100, default='default_category')
+
+    def __str__(self):
+        return f"{self.maincategory} - {self.subcategory}"
+
 
 
 class Tag(models.Model):
