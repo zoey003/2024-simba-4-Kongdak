@@ -23,14 +23,15 @@ def login(request):
 
 def signup(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Username already exists.')
-        else:
-            User.objects.create_user(username=username, password=password)
-            messages.success(request, 'Account created successfully.')
-            return redirect('firstpage')
+        if request.POST['password'] == request.POST['confirm']:
+            username = request.POST['username']
+            password = request.POST['password']
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'Username already exists.')
+            else:
+                User.objects.create_user(username=username, password=password)
+                messages.success(request, 'Account created successfully.')
+                return redirect('firstpage')
     return render(request, 'main/signup.html')
 
 def mainpage(request):

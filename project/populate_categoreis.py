@@ -11,14 +11,21 @@ from main.models import Category
 Category.objects.all().delete()
 
 # 새로운 카테고리 이름 리스트
-category_names = [
+subcategory_names = [
     "대운동장", "사회과학관", "혜화관", "학술문화관", "명진관",
     "신공학관", "중앙도서관", "상록원", "팔정도", "법학관",
     "정보문화관", "만해광장", "학생회관", "학림관", "원흥관"
 ]
 
-# 카테고리 생성
-for name in category_names:
-    Category.objects.create(place=name)
+maincategory_names =[
+    'a','a','a','a','b','b','b','b','b','b','c','c','c','c','c',
+]
 
+# 카테고리 생성
+for name in subcategory_names:
+    Category.objects.create(subcategory=name)
+
+for name in maincategory_names:
+    Category.objects.create(Category=name)
+    
 print("Categories updated successfully!")
