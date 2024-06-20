@@ -54,6 +54,7 @@ def secondpage_c(request):
         return redirect('firstpage')
     return render(request, 'main/secondpage_c.html')
 
+@login_required
 def categorypage(request, category, subcategory):
     posts = Post.objects.filter(author = request.user,categories__maincategory=category, categories__subcategory=subcategory)
     context ={
