@@ -1,6 +1,20 @@
-{% extends 'base.html' %}
-{% block content %}
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/main/style.css'%}"/>
-  <img class="main-img" src="{% static "assets/images/main.svg" %}" alt="">
-{% endblock %}
+<!-- a, b, c 버튼 있는 페이지 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>Main Page</h1>
+    <p>Welcome, {{ user.username }}!</p>
+    
+    <a href="{% url 'secondpage_a' %}"><button>A</button></a>
+    <a href="{% url 'secondpage_b' %}"><button>B</button></a>
+    <a href="{% url 'secondpage_c' %}"><button>C</button></a>
+    
+    <form action="" method="get">
+        <input type="text" name="search" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Page - {{ category }} - {{ subcategory }}</title>
+</head>
+<body>
+    <h1>Category Page - {{ category }} - {{ subcategory }}</h1>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <div>
+                <hr/>
+                <h3>
+                    <a href="{% url 'post_detail' category subcategory post.id %}">
+                        {{ post.created_at }} | {{ post.title }}
+                    </a>
+                </h3>
+            </div>    
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_post' category subcategory %}">Write a Post</a>
+</body>
+</html>

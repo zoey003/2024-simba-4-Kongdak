@@ -1,0 +1,14 @@
+<!-- 글 상세 페이지 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <p>Author: {{ post.author.username }}</p>
+    <p>Created at: {{ post.created_at }}</p>
+    <a href="{% url 'categorypage' post.category post.subcategory %}">Back to List</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- 로그인창 및 회원가입 기능 페이지 (아래는 예시-지워도됩니다)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>First Page</title>
+</head>
+
+<body>
+    <h1>Welcome to the First Page</h1>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="{% url 'signup' %}">Sign Up</a>
+</body>
+</html> -->
