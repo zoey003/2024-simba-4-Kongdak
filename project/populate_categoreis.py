@@ -22,10 +22,7 @@ maincategory_names =[
 ]
 
 # 카테고리 생성
-for name in subcategory_names:
-    Category.objects.create(subcategory=name)
+for subcategory, maincategory in zip(subcategory_names, maincategory_names):
+    Category.objects.create(subcategory=subcategory, maincategory=maincategory)
 
-for name in maincategory_names:
-    Category.objects.create(Category=name)
-    
 print("Categories updated successfully!")
