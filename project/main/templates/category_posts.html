@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/main/category_1.css'%}"/>
+
+  <div class="container">
+    <div>대운동장</div>
+    <div class="frame1">
+        <div>대장코끼리:</div>
+        <div class="gauge-bar"></div>
+        <div>92%</div>
+        <div>내가 채운 추억:</div>
+        <div class="gauge-bar"></div>
+        <div>64%</div>
+    </div>
+
+    <div class="frame2">
+        <div>나의 글 목록</div>
+        <div class="scroll">
+            <div class="post">
+                <div class="frame4">
+                <div>날짜 불러오기</div>
+                <div>제목 불러오기</div>
+                <div>날씨 불러오기</div>
+            </div>
+
+            </div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+            <div class="post"></div>
+
+        </div>
+    </div>
+
+
+  </div>
+
+  <div class="frame3">
+    <button type="submit" id="save" >새로운 추억 남기기</button>
+  </div>
+  
+   
+        
+   
+      {% endblock %}
