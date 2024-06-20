@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../static/css/reset.css.css">
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="../static/css/login.css">
 
@@ -11,20 +12,30 @@
   </head>
 
   <body>
-    <div class="login-view" id="root">
-      <p>대학생활의 설렘을 간직해보세요.</p>
-      <h1>콩닥콩닥</h1>
-      <img src="../static/images/set.svg" alt="">
-      <form action="">
-        <div class="input-view">
+    <div class="login-view">
+      <img src="../static/images/loginImg.png" alt="노트" class="login-main-img">
+      <div class="title-view">
+        <p>대학생활의 설렘을 간직해보세요.</p>
+        <p>콩닥콩닥</p>
+        <img src="../static/images/loginSignal.png" alt="">
+      </div>
+
+      <div class="input-view">
+        <form action="">
           <input type="text" name="username" id="username" placeholder="아이디">
           <input type="password" name="password" id="password" placeholder="비밀번호">
           <button>
             <p>로그인</p>
           </button>
-        </div>
-      </form>
-      <a href="">회원가입</a>
+        </form>
+      </div>
+      <div class="signup-view">
+        <a href="">회원가입</a>
+      </div>
+      <div class="copyright-view">
+        <p>Copyright ⓒ 2024. 동국대학교 멋쟁이사자처럼</p>
+        <p>심바톤 4조 All rights reserved.</p>
+      </div>
     </div>
   </body>
 
