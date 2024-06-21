@@ -28,12 +28,13 @@ def signup(request):
         if request.POST['password'] == request.POST['confirm']:
             username = request.POST['username']
             password = request.POST['password']
+            nickname = request.POST['nickname']
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
                 print(2)    
             else:
                 print("here?")
-                User.objects.create_user(username=username, password=password)
+                User.objects.create_user(username=username, password=password, nickname=nickname)
                 messages.success(request, 'Account created successfully.')
                 return redirect('firstpage')
     return render(request, 'main/signup.html')
