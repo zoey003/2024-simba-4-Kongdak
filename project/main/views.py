@@ -24,26 +24,21 @@ def login(request):
 
 def signup(request):
     if request.method == 'POST':
-        print(1)
         if request.POST['password'] == request.POST['confirm']:
             username = request.POST['username']
             password = request.POST['password']
             nickname = request.POST['nickname']
             studentID = request.POST['studentID']
+
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
-                print(2)
             else:
-                print("here?")
-                User.objects.create_user(username=username, password=password)
+                user = User.objects.create_user(username=username, password=password)
+                Profile.objects.create(user=user, nickname=nickname, studentID=studentID)
                 messages.success(request, 'Account created successfully.')
                 return redirect('firstpage')
     return render(request, 'main/signup.html')
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.db.models import Count
-from .models import Profile, Post
 
 @login_required
 def mainpage(request):
@@ -85,9 +80,6 @@ def secondpage_c(request):
         return redirect('firstpage')
     return render(request, 'main/secondpage_c.html')
 
-from django.shortcuts import render
-from django.db.models import Count
-from .models import Post
 
 def categorypage(request, category, subcategory):
     # 현재 로그인된 사용자가 작성한 해당 카테고리와 서브카테고리의 게시물 필터링

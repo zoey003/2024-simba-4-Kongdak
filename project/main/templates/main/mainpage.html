@@ -103,28 +103,3 @@
     <p>심바톤 4조 All rights reserved.</p>
   </div>
 {% endblock %}
-=======
-<!-- a, b, c 버튼 있는 페이지 -->
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <title>Main Page</title>
-  </head>
-
-  <body>
-    <h1>Main Page</h1>
-    <a href="{% url 'secondpage_a' %}">A</a>
-    <a href="{% url 'secondpage_b' %}">B</a>
-    <a href="{% url 'secondpage_c' %}">C</a>
-    <a href="{% url 'all_posts' %}">모아보기</a>
-    <div>
-      <h2>My Information</h2>
-      <p>Username:
-        {{ user.username }}</p>
-      <p>Email:
-        {{ user.email }}</p>
-    </div>
-  </body>
-
-</html>
