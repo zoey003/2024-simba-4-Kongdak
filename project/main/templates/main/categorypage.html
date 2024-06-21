@@ -1,52 +1,47 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %} {% include 'shared/_topnav.html'%}
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/category_1.css'%}"
+/>
 
-{% block content %}
-  {% include 'shared/_topnav.html' %}
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/category_1.css'%}"/>
-
-  <div class="category-view">
-    <div class="container">
-      <div>대운동장</div>
-      <div class="category_1_frame1">
-        <div class="category_1_frame1_1">
-          <div class="label short">대장코끼리:</div>
-          <div id="crown">
-            <img src="../static/images/Crown (2).svg"/>
-            하채민
-          </div>
-
-          <div class="value">92개</div>
-        </div>
-        <div class="category_1_frame1_2">
-          <div class="label">내가 채운 추억:</div>
-          <div class="gauge-bar">
-            <div class="fill" style="width: 40%"></div>
-          </div>
-          <div class="value">50개</div>
+<div class="category-view">
+  <div class="post_container">
+    <div id="post_place">{{subcategory}}</div>
+    <div class="category_1_frame1">
+      <div class="category_1_frame1_1">
+        <div class="label_short">대장코끼리:</div>
+        <div id="crown">
+          <img src="{%static 'assets/images/Crown (2).svg' %}" /> {{top_author}}
         </div>
       </div>
-
-      <div class="category_1_frame2">
-        <div>나의 글 목록</div>
-        <p></p>
-        <div class="scroll">
-          <div class="category_1_frame4">
-            <div>2024.06.19</div>
-            <div>심바톤4조회의날</div>
-            <div>날씨</div>
-          </div>
-        </div>
-        <!-- 반복된 post 요소를 나열 -->
+        <div class="value">{{post_count}}</div>
       </div>
-
-      <div class="category_1_frame3">
-        <a href="{% url  'create_post' category subcategory %}">
-          <button type="submit" id="save">새로운 추억 남기기</button>
-
-        </a>
+      <div class="category_1_frame1_2">
+        <div class="label">내가 채운 추억:</div>
+        <div class="gauge-bar">
+          <div class="fill" style="width: 60%"></div>
+        </div>
+        <div class="value">50개</div>
       </div>
     </div>
-  </div>
 
+    <div class="category_1_frame2">
+      <div>나의 글 목록</div>
+      <p id="line"></p>
+      <div class="scroll">
+        <div class="category_1_frame4">
+          <div>{{post.created_at}}</div>
+          <div>{{post.title }}</div>
+          <div>날씨</div>
+        </div>
+      </div>
+      <!-- 반복된 post 요소를 나열 -->
+    </div>
+  </div>
+  <div class="category_1_frame3">
+    <a href="" id="save">새로운 추억 남기기</a>
+  </div>
+</div>
 {% endblock %}
