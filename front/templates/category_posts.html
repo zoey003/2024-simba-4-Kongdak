@@ -11,14 +11,19 @@
     />
     <link rel="stylesheet" type="text/css" href="../static/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/index.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../static/css/category_1.css"
+    />
   </head>
   <body>
     <div class="category-view">
       <div class="container">
-        <div>대운동장</div>
+        <div id="post_place">대운동장</div>
         <div class="category_1_frame1">
           <div class="category_1_frame1_1">
-            <div class="label short">대장코끼리:</div>
+            <div class="label_short">대장코끼리:</div>
             <div id="crown">
               <img src="../static/images/Crown (2).svg" /> 하채민
             </div>
@@ -28,7 +33,7 @@
           <div class="category_1_frame1_2">
             <div class="label">내가 채운 추억:</div>
             <div class="gauge-bar">
-              <div class="fill" style="width: 40%"></div>
+              <div class="fill" style="width: 60%"></div>
             </div>
             <div class="value">50개</div>
           </div>
@@ -38,17 +43,20 @@
           <div>나의 글 목록</div>
           <p></p>
           <div class="scroll">
+            <!-- {% for item in item_list %} -->
             <div class="category_1_frame4">
               <div>2024.06.19</div>
               <div>심바톤4조회의날</div>
               <div>날씨</div>
             </div>
+
+            <!-- {% endfor%} -->
           </div>
           <!-- 반복된 post 요소를 나열 -->
         </div>
 
         <div class="category_1_frame3">
-          <button type="submit" id="save">새로운 추억 남기기</button>
+          <a href="" id="save">새로운 추억 남기기</a>
         </div>
       </div>
     </div>
