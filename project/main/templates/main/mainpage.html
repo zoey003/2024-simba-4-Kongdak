@@ -94,7 +94,7 @@
     <img src="{% static 'assets/images/arrow.svg'%}" alt="">
   </div>
   <div class="logout-view">
-    <a href="">로그아웃</a>
+    <a href="{% url 'logout' %}">로그아웃</a>
   </div>
   <div class="footer-view">
     <p>Copyright ⓒ 2024. 동국대학교 멋쟁이사자처럼</p>
@@ -116,6 +116,7 @@
     <a href="{% url 'secondpage_b' %}">B</a>
     <a href="{% url 'secondpage_c' %}">C</a>
     <a href="{% url 'all_posts' %}">모아보기</a>
+    <a href="{% url 'logout' %}">Logout</a>
     <div>
       <h2>My Information</h2>
       <p>Username:

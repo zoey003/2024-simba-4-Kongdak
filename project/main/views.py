@@ -130,5 +130,3 @@ def delete_post(request, category, subcategory, post_id):
 def all_posts(request):
     posts = Post.objects.all()
     return render(request, 'main/all_posts.html', {'posts': posts})
-
-
