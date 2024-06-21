@@ -1,0 +1,89 @@
+.grid-b-campus {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 90vh;
+  border: solid 1px black;
+}
+
+.campus-view-b {
+  display: grid;
+  width: 90%;
+  background-repeat: no-repeat;
+  background-image: url("../images/b_screen.svg");
+  background-position: center;
+}
+
+.grid_b {
+  height: 60vh;
+  margin-top: 150px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.8fr 0.5fr 1fr 1fr 2fr;
+}
+.grid_b > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid_b > div:nth-child(1) {
+  margin-bottom: 30px;
+}
+
+.grid_b > div:nth-child(2) {
+  margin-top: 60px;
+}
+
+.grid_b > div:nth-child(3) {
+  margin-bottom: 30px;
+  margin-right: 20px;
+}
+
+.grid_b > div:nth-child(4) {
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.grid_b > div:nth-child(5) {
+  margin-bottom: 30px;
+  margin-left: 40px;
+}
+.grid_b > div:nth-child(6) {
+  margin-bottom: 30px;
+  margin-left: 40px;
+}
+.button-1 {
+  grid-row: 2/3;
+  grid-column: 1/2;
+}
+
+.button-2 {
+  grid-row: 1/2;
+  grid-column: 3/4;
+}
+
+.button-3 {
+  grid-row: 3/4;
+  grid-column: 2/3;
+}
+
+.button-4 {
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+
+.button-5 {
+  grid-row: 4/5;
+  grid-column: 2/3;
+}
+
+.button-6 {
+  grid-row: 4/5;
+  grid-column: 1/2;
+}
+
+.grid_b p {
+  position: absolute;
+  z-index: 2;
+}

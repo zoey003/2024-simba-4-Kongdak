@@ -1,15 +1,30 @@
-<!-- a구역 건물페이지 -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Second Page - A</title>
-</head>
-<body>
-    <h1>Second Page - A</h1>
-    <a href="{% url 'categorypage'  'a' '1' %}"><button>Category 1</button></a>
-    <a href="{% url 'categorypage'  'a' '2' %}"><button>Category 2</button></a>
-    <a href="{% url 'categorypage'  'a' '3' %}"><button>Category 3</button></a>
-    <a href="{% url 'categorypage'  'a' '4' %}"><button>Category 4</button></a>
-    <a href="{% url 'categorypage'  'a' '5' %}"><button>Category 5</button></a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+  {% include 'shared/_topnav.html' %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/category_a.css'%}"/>
+
+  <div class="grid-a-campus">
+    <div class="campus-view-a">
+      <div class="grid_a">
+        <div class="button-1">
+          <img src="{% static "assets/images/placeframe.svg" %}" alt="">
+          <a>사과/경영관</a>
+        </div>
+        <div class="button-2">
+          <img src="{% static "assets/images/placeframe.svg" %}" alt="">
+          <a href="{% url 'categorypage'  'a' '1' %}">대운동장</a>
+        </div>
+        <div class="button-3">
+          <img src="{% static "assets/images/placeframe.svg" %}" alt="">
+          <a>학술문화관</a>
+        </div>
+        <div class="button-4">
+          <img src="{% static "assets/images/placeframe.svg" %}" alt="">
+          <a>혜화관</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

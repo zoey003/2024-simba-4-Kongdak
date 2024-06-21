@@ -17,6 +17,7 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             return redirect('mainpage')
+        
         else:
             messages.error(request, 'Invalid username or password.')
     return render(request, 'main/firstpage.html')
@@ -29,6 +30,7 @@ def signup(request):
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
             else:
+                print("here?")
                 User.objects.create_user(username=username, password=password)
                 messages.success(request, 'Account created successfully.')
                 return redirect('firstpage')
