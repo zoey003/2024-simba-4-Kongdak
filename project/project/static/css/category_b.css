@@ -3,64 +3,42 @@
   justify-content: center;
   width: 100%;
   height: 90vh;
-  border: solid 1px black;
 }
-
 .campus-view-b {
-  display: grid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 90%;
+  height: 500px;
   background-repeat: no-repeat;
-  background-image: url("../images/b_screen.svg");
+  background-image: url("../assets/images/b_screen.svg");
   background-position: center;
+  background-size: cover;
+  margin-top: 6rem;
 }
 
 .grid_b {
-  height: 60vh;
-  margin-top: 150px;
+  height: 90%;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.8fr 0.5fr 1fr 1fr 2fr;
+  grid-template-rows: 1fr 0.8fr 1fr 1fr 3fr;
 }
-.grid_b > div {
+.grid_b > a {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.grid_b > div:nth-child(1) {
-  margin-bottom: 30px;
-}
-
-.grid_b > div:nth-child(2) {
-  margin-top: 60px;
-}
-
-.grid_b > div:nth-child(3) {
-  margin-bottom: 30px;
-  margin-right: 20px;
-}
-
-.grid_b > div:nth-child(4) {
-  margin-top: 30px;
-  margin-left: 40px;
-}
-
-.grid_b > div:nth-child(5) {
-  margin-bottom: 30px;
-  margin-left: 40px;
-}
-.grid_b > div:nth-child(6) {
-  margin-bottom: 30px;
-  margin-left: 40px;
-}
 .button-1 {
-  grid-row: 2/3;
+  grid-row: 1/2;
   grid-column: 1/2;
 }
 
 .button-2 {
   grid-row: 1/2;
   grid-column: 3/4;
+  align-self: start;
 }
 
 .button-3 {
@@ -71,11 +49,13 @@
 .button-4 {
   grid-row: 2/3;
   grid-column: 2/3;
+  align-self: start;
 }
 
 .button-5 {
   grid-row: 4/5;
   grid-column: 2/3;
+  align-self: end;
 }
 
 .button-6 {
@@ -87,3 +67,5 @@
   position: absolute;
   z-index: 2;
 }
+
+/* 수정완료 */

@@ -1,39 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/reset.css" />
-    <link rel="stylesheet" href="../static/css/index.css" />
-    <link rel="stylesheet" href="../static/css/category_c.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="grid-c-campus">
-      <div class="campus-view-c">
-        <div class="grid_c">
-          <div class="button-1">
-            <img src="../static/images/placeframe.svg" alt="" />
-            <p>원흥관</p>
-          </div>
-          <div class="button-2">
-            <img src="../static/images/placeframe_long.svg" alt="" />
-            <p>정보문화관P/Q</p>
-          </div>
-          <div class="button-3">
-            <img src="../static/images/placeframe.svg" alt="" />
-            <p>학생회관</p>
-          </div>
-          <div class="button-4">
-            <img src="../static/images/placeframe.svg" alt="" />
-            <p>만해광장</p>
-          </div>
-          <div class="button-5">
-            <img src="../static/images/placeframe.svg" alt="" />
-            <p>학림관</p>
-          </div>
-        </div>
-      </div>
+{% extends 'base.html' %} {% block content %} {% include 'shared/_topnav.html'%}
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/category_c.css'%}"
+/>
+
+<div class="grid-c-campus">
+  <div class="campus-view-c">
+    <div class="grid_c">
+      <a href="{% url 'categorypage' 'c' '원흥관' %}" class="button-1">
+        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
+        <p class="c_p">원흥관</p>
+      </a>
+      <a href="{% url 'categorypage' 'c' '정보문화관P·Q' %}" class="button-2">
+        <img src="{% static 'assets/images/placeframe_long.svg'%}" alt="" />
+        <p class="c_p">정보문화관P/Q</p>
+      </a>
+      <a href="{% url 'categorypage' 'c' '학생회관' %}" class="button-3">
+        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
+        <p class="c_p">학생회관</p>
+      </a>
+      <a href="{% url 'categorypage' 'c' '만해광장' %}" class="button-4">
+        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
+        <p class="c_p">만해광장</p>
+      </a>
+      <a href="{% url 'categorypage' 'c' '학림관' %}" class="button-5">
+        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
+        <p class="c_p">학림관</p>
+      </a>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+{% endblock %}
