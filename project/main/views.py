@@ -99,7 +99,7 @@ def create_post(request, category, subcategory):
             post.category = category
             post.subcategory = subcategory
             post.save()
-            # 작성한 글이 속한 카테고리 페이지로 리다이렉션
+            form.save_m2m()  # ManyToMany 필드를 저장
             return redirect('categorypage', category=category, subcategory=subcategory)
     else:
         form = PostForm()
@@ -114,6 +114,7 @@ def edit_post(request, category, subcategory, post_id):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
+            form.save_m2m() # ManyToManyField 관계를 저장
             return redirect('post_detail', category=category, subcategory=subcategory, post_id=post.id)
     else:
         form = PostForm(instance=post)
