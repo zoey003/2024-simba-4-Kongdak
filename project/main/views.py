@@ -58,13 +58,29 @@ def secondpage_c(request):
 
 @login_required
 def categorypage(request, category, subcategory):
-    posts = Post.objects.filter(author = request.user,category=category, subcategory=subcategory)
-    context ={
+    posts = Post.objects.filter(author=request.user, category=category, subcategory=subcategory)
+    
+    top_author = Post.objects.filter(category=category, subcategory=subcategory)\
+        .values('author__username')\
+        .annotate(post_count=Count('author'))\
+        .order_by('-post_count')\
+        .first()
+
+    if top_author:
+        top_author_name = top_author['author__username']
+        post_count = top_author['post_count']
+    else:
+        top_author_name = "대장이 되어보세요!"
+        post_count = 0
+
+    context = {
         'category': category,
         'subcategory': subcategory,
         'posts': posts,
+        'top_author': top_author_name,
+        'post_count': post_count,
     }
-    return render(request, 'main/categorypage.html',context)
+    return render(request, 'main/categorypage.html', context)
 
 @login_required #데코레이터: 로그인된 상태에서만 함수 호출, 로그인 되지 않은 경우 로그인 페이지로 리다이렉트
 def post_detail(request, category, subcategory, post_id):
@@ -108,16 +124,8 @@ def delete_post(request, category, subcategory, post_id):
         post.delete()
     return redirect('categorypage', category=category, subcategory=subcategory)
 
-@login_required
-def user_post_counts(request):
-    users_with_post_count = User.objects.annotate(post_count=Count('post'))
-    most_active_user = User.objects.annotate(post_count=Count('post')).order_by('-post_count').first()
-    context = {
-        'users_with_post_count': users_with_post_count,
-        'most_active_user': most_active_user
-    }
-    return render(request, 'main/user_post_counts.html', context)
-
 def all_posts(request):
     posts = Post.objects.all()
     return render(request, 'main/all_posts.html', {'posts': posts})
+
+
