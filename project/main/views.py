@@ -24,11 +24,13 @@ def login(request):
 
 def signup(request):
     if request.method == 'POST':
+        print(1)
         if request.POST['password'] == request.POST['confirm']:
             username = request.POST['username']
             password = request.POST['password']
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
+                print(2)    
             else:
                 print("here?")
                 User.objects.create_user(username=username, password=password)

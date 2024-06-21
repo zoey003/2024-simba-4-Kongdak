@@ -17,13 +17,14 @@ html {
 body {
   width: 430px;
   height: 100%;
+}
+#root {
+  width: 99.5;
+  min-height: 99vh;
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-#root {
-  height: 100%;
-  width: 100%;
 }
 
 @font-face {
