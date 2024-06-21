@@ -28,12 +28,13 @@ def signup(request):
         if request.POST['password'] == request.POST['confirm']:
             username = request.POST['username']
             password = request.POST['password']
+            nickname = request.POST['nickname']
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
                 print(2)    
             else:
                 print("here?")
-                User.objects.create_user(username=username, password=password)
+                User.objects.create_user(username=username, password=password, nickname=nickname)
                 messages.success(request, 'Account created successfully.')
                 return redirect('firstpage')
     return render(request, 'main/signup.html')
@@ -99,7 +100,7 @@ def create_post(request, category, subcategory):
             post.category = category
             post.subcategory = subcategory
             post.save()
-            # 작성한 글이 속한 카테고리 페이지로 리다이렉션
+            form.save_m2m()  # ManyToMany 필드를 저장
             return redirect('categorypage', category=category, subcategory=subcategory)
     else:
         form = PostForm()
@@ -114,6 +115,7 @@ def edit_post(request, category, subcategory, post_id):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
+            form.save_m2m() # ManyToManyField 관계를 저장
             return redirect('post_detail', category=category, subcategory=subcategory, post_id=post.id)
     else:
         form = PostForm(instance=post)
@@ -129,5 +131,3 @@ def delete_post(request, category, subcategory, post_id):
 def all_posts(request):
     posts = Post.objects.all()
     return render(request, 'main/all_posts.html', {'posts': posts})
-
-

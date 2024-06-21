@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.firstpage, name='firstpage'),
@@ -14,4 +15,8 @@ urlpatterns = [
     path('category/<str:category>/<str:subcategory>/create/', views.create_post, name='create_post'),
     path('category/<str:category>/<str:subcategory>/post/<int:post_id>/edit/', views.edit_post, name='edit_post'),
     path('category/<str:category>/<str:subcategory>/post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
-    path('all_posts/', views.all_posts, name='all_posts'),    ]
+    path('all_posts/', views.all_posts, name='all_posts'),    
+    path('', auth_views.LogoutView.as_view(next_page='firstpage'), name='logout'),
+    ]
+
+
