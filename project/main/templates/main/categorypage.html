@@ -3,7 +3,7 @@
 <link
   rel="stylesheet"
   type="text/css"
-  href="{% static 'css/category_1.css'%}"
+  href="{% static 'css/categorypage.css'%}"
 />
 
 <div class="category-view">
@@ -16,15 +16,14 @@
           <img src="{%static 'assets/images/Crown (2).svg' %}" /> {{top_author}}
         </div>
       </div>
-        <div class="value">{{post_count}}</div>
+      <div class="value">{{post_count}}</div>
+    </div>
+    <div class="category_1_frame1_2">
+      <div class="label">내가 채운 추억:</div>
+      <div class="gauge-bar">
+        <div class="fill" style="width: 60%"></div>
       </div>
-      <div class="category_1_frame1_2">
-        <div class="label">내가 채운 추억:</div>
-        <div class="gauge-bar">
-          <div class="fill" style="width: 60%"></div>
-        </div>
-        <div class="value">50개</div>
-      </div>
+      <div class="value">50개</div>
     </div>
 
     <div class="category_1_frame2">
@@ -37,11 +36,13 @@
           <div>날씨</div>
         </div>
       </div>
-      <!-- 반복된 post 요소를 나열 -->
     </div>
   </div>
-  <div class="category_1_frame3">
-    <a href="" id="save">새로운 추억 남기기</a>
-  </div>
+  <!-- <div class="category_1_frame3">
+  </div> -->
+
+  <a href="{% url 'create_post' 'category' 'subcategory' %}" id="save"
+    >새로운 추억 남기기</a
+  >
 </div>
 {% endblock %}
