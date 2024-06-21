@@ -25,13 +25,6 @@
 
 .top-nav div:nth-child(2) {
   width: 60%;
-.top-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 80%;
-  margin-top: 3rem;
-  border: 1px solid black;
 }
 
 .top-nav div:nth-child(1) {
@@ -52,14 +45,8 @@
   width: 15%;
   display: flex;
   justify-content: center;
-.top-nav div:nth-child(3) {
-  width: 15%;
-  display: flex;
-  justify-content: center;
 }
 
-p {
-  margin: 0;
 p {
   margin: 0;
 }

@@ -8,7 +8,8 @@
     <ul>
         {% for post in posts %}
             <li>
-                <a href="{% url 'post_detail' post.category post.subcategory post.id %}">{{post.created_at}} {{ post.title }} {{ post.subcategoty }}
+                {{post}}
+                {% comment %} <a href="{% url 'post_detail' post.category post.subcategory post.id %}">{{post.created_at}} {{ post.title }} {{ post.subcategoty }} {% endcomment %}
             </li>
         {% endfor %}
     </ul>
