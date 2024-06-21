@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Post, Profile
+from .models import Post, Profile , Tag
 from .forms import PostForm
 from django.db.models import Count
 def firstpage(request):
@@ -122,9 +122,9 @@ def post_detail(request, category, subcategory, post_id):
 @login_required
 def create_post(request, category, subcategory):
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        tags_str = request.POST['tags']
+        title = request.POST.get('title', '')
+        content = request.POST.get('content', '')
+        tags_str = request.POST.get('tags', '')
 
         if not title or not content:
             messages.error(request, 'Title and content are required.')
@@ -155,9 +155,9 @@ def edit_post(request, category, subcategory, post_id):
         return redirect('post_detail', category=category, subcategory=subcategory, post_id=post_id)
     
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        tags_str = request.POST['tags']
+        title = request.POST.get('title', '')
+        content = request.POST.get('content', '')
+        tags_str = request.POST.get('tags', '')
 
         if not title or not content:
             messages.error(request, 'Title and content are required.')
