@@ -122,16 +122,6 @@ def delete_post(request, category, subcategory, post_id):
         post.delete()
     return redirect('categorypage', category=category, subcategory=subcategory)
 
-@login_required
-def user_post_counts(request):
-    users_with_post_count = User.objects.annotate(post_count=Count('post'))
-    most_active_user = User.objects.annotate(post_count=Count('post')).order_by('-post_count').first()
-    context = {
-        'users_with_post_count': users_with_post_count,
-        'most_active_user': most_active_user
-    }
-    return render(request, 'main/user_post_counts.html', context)
-
 def all_posts(request):
     posts = Post.objects.all()
     return render(request, 'main/all_posts.html', {'posts': posts})

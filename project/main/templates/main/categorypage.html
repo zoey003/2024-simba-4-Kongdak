@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Category Page - {{ category }} - {{ subcategory }}</h1>
-    <h2>Top Author: {{ top_author }} {% if post_count > 0 %} ({{ post_count }} posts) {% endif %}</h2>
+    <h2>대장코끼리: {{ top_author }} {% if post_count > 0 %} ({{ post_count }} posts) {% endif %}</h2>
     <ul>
         {% for post in posts %}
         <li>

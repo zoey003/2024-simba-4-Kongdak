@@ -14,6 +14,4 @@ urlpatterns = [
     path('category/<str:category>/<str:subcategory>/create/', views.create_post, name='create_post'),
     path('category/<str:category>/<str:subcategory>/post/<int:post_id>/edit/', views.edit_post, name='edit_post'),
     path('category/<str:category>/<str:subcategory>/post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
-    path('user_post_counts/', views.user_post_counts, name='user_post_counts'),  # 사용자별 글 개수 조회 URL 추가
-    path('all_posts/', views.all_posts, name='all_posts'),
-]
+    path('all_posts/', views.all_posts, name='all_posts'),    ]
