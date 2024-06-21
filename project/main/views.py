@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Post, Profile
+from .models import Post, Profile ,Tag
 from .forms import PostForm
 from django.db.models import Count
 def firstpage(request):
@@ -29,14 +29,13 @@ def signup(request):
             password = request.POST['password']
             nickname = request.POST['nickname']
             studentID = request.POST['studentID']
+
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
-
             else:
                 user = User.objects.create_user(username=username, password=password)
                 Profile.objects.create(user=user, nickname=nickname, studentID=studentID)
                 messages.success(request, 'Account created successfully.')
-
                 return redirect('firstpage')
     return render(request, 'main/signup.html')
 
@@ -122,9 +121,9 @@ def post_detail(request, category, subcategory, post_id):
 @login_required
 def create_post(request, category, subcategory):
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        tags_str = request.POST['tags']
+        title = request.POST.get('title', '')
+        content = request.POST.get('content', '')
+        tags_str = request.POST.get('tags', '')
 
         if not title or not content:
             messages.error(request, 'Title and content are required.')
@@ -155,9 +154,9 @@ def edit_post(request, category, subcategory, post_id):
         return redirect('post_detail', category=category, subcategory=subcategory, post_id=post_id)
     
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        tags_str = request.POST['tags']
+        title = request.POST.get('title', '')
+        content = request.POST.get('content', '')
+        tags_str = request.POST.get('tags', '')
 
         if not title or not content:
             messages.error(request, 'Title and content are required.')
@@ -185,10 +184,6 @@ def delete_post(request, category, subcategory, post_id):
         post.delete()
     return redirect('categorypage', category=category, subcategory=subcategory)
 
-def all_posts(request):
-    posts = Post.objects.all()
-    return render(request, 'main/all_posts.html', {'posts': posts})
-
 @login_required
 def search_by_tag(request):
     query = request.GET.get('q', '')
@@ -203,3 +198,9 @@ def search_by_tag(request):
         'posts': posts,
     }
     return render(request, 'main/search.html', context)
+
+
+
+def all_posts(request):
+    posts = Post.objects.all()
+    return render(request, 'main/all_posts.html', {'posts': posts})
