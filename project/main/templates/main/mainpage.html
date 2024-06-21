@@ -42,8 +42,8 @@
   <div class="info-view">
     <div class="info-title">내 정보</div>
     <div class="info-detail">
-      <p class="p-info">test</p>
-      <p class="p-info">{{ user.username }}</p>
+      <p class="p-info">{{ user_profile.studentID }}</p>
+      <p class="p-info">{{ user_profile.nickname }}</p>
       <p class="p-info">2024.03.02 입학</p>
       <p class="p-info">나의 누적 추억 00%</p>
       <div><img src="{% static 'assets/images/elephant.svg'%}" alt=""></div>
@@ -91,7 +91,9 @@
   </div>
   <div class="collection-view">
     <p>모아보기</p>
-    <img src="{% static 'assets/images/arrow.svg'%}" alt="">
+    <a href="{% url 'all_posts'%}">
+      <img src="{% static 'assets/images/arrow.svg'%}" alt="">
+    </a>
   </div>
   <div class="logout-view">
     <a href="{% url 'logout' %}">로그아웃</a>
@@ -116,7 +118,6 @@
     <a href="{% url 'secondpage_b' %}">B</a>
     <a href="{% url 'secondpage_c' %}">C</a>
     <a href="{% url 'all_posts' %}">모아보기</a>
-    <a href="{% url 'logout' %}">Logout</a>
     <div>
       <h2>My Information</h2>
       <p>Username:
