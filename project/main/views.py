@@ -115,3 +115,7 @@ def user_post_counts(request):
         'most_active_user': most_active_user
     }
     return render(request, 'main/user_post_counts.html', context)
+
+def all_posts(request):
+    posts = Post.objects.all()
+    return render(request, 'main/all_posts.html', {'posts': posts})

@@ -6,15 +6,14 @@
 </head>
 <body>
     <h1>Main Page</h1>
-    <p>Welcome, {{ user.username }}!</p>
-    
-    <a href="{% url 'secondpage_a' %}"><button>A</button></a>
-    <a href="{% url 'secondpage_b' %}"><button>B</button></a>
-    <a href="{% url 'secondpage_c' %}"><button>C</button></a>
-    
-    <form action="" method="get">
-        <input type="text" name="search" placeholder="Search...">
-        <button type="submit">Search</button>
-    </form>
+    <a href="{% url 'secondpage_a' %}">A</a>
+    <a href="{% url 'secondpage_b' %}">B</a>
+    <a href="{% url 'secondpage_c' %}">C</a>
+    <a href="{% url 'all_posts' %}">모아보기</a>
+    <div>
+        <h2>My Information</h2>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+    </div>
 </body>
 </html>
