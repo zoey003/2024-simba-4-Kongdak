@@ -1,26 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>First Page</title>
-</head>
+{% extends 'base.html' %}
+{% block content %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}"/>
+  <div class="login-view">
+    <img src="{% static 'assets/images/loginImg.png'%}" alt="노트" class="login-main-img">
+    <div class="title-view">
+      <p>대학생활의 설렘을 간직해보세요.</p>
+      <p>콩닥콩닥</p>
+      <img src="{% static 'assets/images/loginSignal.png'%}" alt="">
+    </div>
 
-<body>
-    <h1>Welcome to the First Page</h1>
-    <form action="{% url 'login' %}" method="post">
+    <div class="input-view">
+      <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-        <button type="submit">Login</button>
-    </form>
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <a href="{% url 'signup' %}">Sign Up</a>
-</body>
-</html>
+        <input type="text" name="username" id="username" placeholder="아이디">
+        <input type="password" name="password" id="password" placeholder="비밀번호">
+        <button>
+          <p>로그인</p>
+        </button>
+      </form>
+    </div>
+    <div class="signup-view">
+      <a href="{% url 'signup' %}">회원가입</a>
+    </div>
+    <div class="copyright-view">
+      <p>Copyright ⓒ 2024. 동국대학교 멋쟁이사자처럼</p>
+      <p>심바톤 4조 All rights reserved.</p>
+    </div>
+  </div>
+{% endblock %}
