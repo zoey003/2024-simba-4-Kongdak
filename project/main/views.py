@@ -41,10 +41,6 @@ def signup(request):
                 return redirect('firstpage')
     return render(request, 'main/signup.html')
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.db.models import Count
-from .models import Profile, Post
 
 @login_required
 def mainpage(request):
@@ -86,9 +82,6 @@ def secondpage_c(request):
         return redirect('firstpage')
     return render(request, 'main/secondpage_c.html')
 
-from django.shortcuts import render
-from django.db.models import Count
-from .models import Post
 
 def categorypage(request, category, subcategory):
     # 현재 로그인된 사용자가 작성한 해당 카테고리와 서브카테고리의 게시물 필터링
