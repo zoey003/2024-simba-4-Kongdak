@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import PostForm
-
+from django.db.models import Count
 def firstpage(request):
     return render(request, 'main/firstpage.html')
 
@@ -56,7 +56,7 @@ def secondpage_c(request):
 
 @login_required
 def categorypage(request, category, subcategory):
-    posts = Post.objects.filter(author = request.user,categories__maincategory=category, categories__subcategory=subcategory)
+    posts = Post.objects.filter(author = request.user,category=category, subcategory=subcategory)
     context ={
         'category': category,
         'subcategory': subcategory,
@@ -105,3 +105,13 @@ def delete_post(request, category, subcategory, post_id):
     if request.user == post.author:
         post.delete()
     return redirect('categorypage', category=category, subcategory=subcategory)
+
+@login_required
+def user_post_counts(request):
+    users_with_post_count = User.objects.annotate(post_count=Count('post'))
+    most_active_user = User.objects.annotate(post_count=Count('post')).order_by('-post_count').first()
+    context = {
+        'users_with_post_count': users_with_post_count,
+        'most_active_user': most_active_user
+    }
+    return render(request, 'main/user_post_counts.html', context)
