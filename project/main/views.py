@@ -185,6 +185,7 @@ def delete_post(request, category, subcategory, post_id):
         post.delete()
     return redirect('categorypage', category=category, subcategory=subcategory)
 
+@login_required
 def all_posts(request):
     posts = Post.objects.all()
     return render(request, 'main/all_posts.html', {'posts': posts})
