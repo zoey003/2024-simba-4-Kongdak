@@ -7,17 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>콩닥콩닥</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/base/reset.css'%}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base/style.css'%}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base/font.css'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base/index.css'%}"/>
   </head>
 
   <body>
     <!-- 상단 네브바 -->
-    {% include 'shared/_topnav.html' %}
+    {% comment %} {% include 'shared/_topnav.html' %} {% endcomment %}
     <!-- 상단 네브바 -->
-
-    <!-- 내용 -->
+    <div id="root">
     {% block content %}{% endblock %}
+
+    </div>
+    <!-- 내용 -->
     <!-- 내용 -->
   </body>
 

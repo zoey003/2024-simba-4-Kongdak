@@ -1,0 +1,43 @@
+/* index */
+/* reset.css로 출발 */
+
+html,
+body {
+  margin: 0;
+}
+
+html {
+  background-color: white;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  min-height: 100svh;
+}
+body {
+  width: 430px;
+  height: 100%;
+}
+#root {
+  width: 99.5;
+  min-height: 99vh;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@font-face {
+  font-family: "Sagak-sagak";
+  src: url("../../assets/font/Sagak-sagak.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Sagak-sagak" !important;
+}
+
+button {
+  cursor: pointer;
+}
