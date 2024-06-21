@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Post Counts</title>
+</head>
+<body>
+    <h1>사용자별 글 개수</h1>
+    <ul>
+        {% for user in users_with_post_count %}
+            <li>{{ user.username }}은 {{ user.post_count }} 개의 글을 썼어요</li>
+        {% endfor %}
+    </ul>
+
+    <h2>대장코끼리</h2>
+    {% if most_active_user %}
+        <p>{{ most_active_user.username }} has written the most posts: {{ most_active_user.post_count }}</p>
+    {% else %}
+        <p>No posts found</p>
+    {% endif %}
+</body>
+</html>
