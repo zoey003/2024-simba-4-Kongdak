@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Post
+from .models import Post, Profile
 from .forms import PostForm
 from django.db.models import Count
 def firstpage(request):
@@ -29,12 +29,14 @@ def signup(request):
             username = request.POST['username']
             password = request.POST['password']
             nickname = request.POST['nickname']
+            studentID = request.POST['studentID']
+
             if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists.')
-                print(2)    
+                print(2)
             else:
-                print("here?")
-                User.objects.create_user(username=username, password=password, nickname=nickname)
+                user = User.objects.create_user(username=username, password=password)
+                Profile.objects.create(user=user, nickname=nickname, studentID=studentID)
                 messages.success(request, 'Account created successfully.')
                 return redirect('firstpage')
     return render(request, 'main/signup.html')
@@ -42,7 +44,8 @@ def signup(request):
 def mainpage(request):
     if not request.user.is_authenticated:
         return redirect('firstpage')
-    return render(request, 'main/mainpage.html', {'user': request.user})
+    user_profile = get_object_or_404(Profile, user=request.user)
+    return render(request, 'main/mainpage.html', {'user': request.user, 'user_profile': user_profile})
 
 def secondpage_a(request):
     if not request.user.is_authenticated:
