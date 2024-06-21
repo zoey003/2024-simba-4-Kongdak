@@ -10,8 +10,8 @@ urlpatterns = [
     path('secondpage_b/', views.secondpage_b, name='secondpage_b'),
     path('secondpage_c/', views.secondpage_c, name='secondpage_c'),
     path('category/<str:category>/<str:subcategory>/', views.categorypage, name='categorypage'),
-    path('category/<str:category>/<str:subcategory>/post/<int:post_id>/', views.post_detail, name='post-detail'),
+    path('category/<str:category>/<str:subcategory>/post/<int:post_id>/', views.post_detail, name='post_detail'),
     path('category/<str:category>/<str:subcategory>/create/', views.create_post, name='create_post'),
     path('category/<str:category>/<str:subcategory>/post/<int:post_id>/edit/', views.edit_post, name='edit_post'),
     path('category/<str:category>/<str:subcategory>/post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
-]
+    path('all_posts/', views.all_posts, name='all_posts'),    ]

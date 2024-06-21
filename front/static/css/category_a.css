@@ -2,69 +2,50 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 90vh;
-  border: solid 1px black;
 }
 
 .campus-view-a {
-  display: grid;
+  position: relative;
   width: 90%;
+  height: 90vh;
   background-repeat: no-repeat;
   background-image: url("../images/a_screen.svg");
   background-position: center;
+  background-size: contain;
+  margin-top: 5rem;
 }
 
-.grid_a {
-  height: 60vh;
-  margin-top: 150px;
-  display: grid;
-  grid-template-columns: repeat(1fr, 4);
-  grid-template-rows: 1fr 1fr 1fr;
-}
-.grid_a > div {
+.campus-view-a > a {
+  position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
-.grid_a > div:nth-child(1) {
-  margin-bottom: 70px;
-}
-
-.grid_a > div:nth-child(2) {
-  margin-left: 50px;
-  margin-top: 30px;
-}
-
-.grid_a > div:nth-child(3) {
-  margin-left: 30px;
-  margin-bottom: 10px;
-}
-
-.grid_a > div:nth-child(4) {
-  margin-right: 50px;
-}
 .button-1 {
-  grid-row: 2/3;
-  grid-column: 1/2;
+  top: 45%;
+  left: 10%;
 }
 
 .button-2 {
-  grid-row: 1/2;
-  grid-column: 1/2;
+  top: 25%;
+  left: 20%;
 }
 
 .button-3 {
-  grid-row: 3/4;
-  grid-column: 1/2;
+  top: 70%;
+  left: 30%;
 }
 
 .button-4 {
-  grid-row: 2/3;
-  grid-column: 2/3;
+  top: 50%;
+  left: 60%;
 }
 
-.grid_a p {
+p {
   position: absolute;
   z-index: 2;
 }
+
+/* 수정완료 */
