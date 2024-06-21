@@ -41,11 +41,35 @@ def signup(request):
                 return redirect('firstpage')
     return render(request, 'main/signup.html')
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.db.models import Count
+from .models import Profile, Post
+
+@login_required
 def mainpage(request):
     if not request.user.is_authenticated:
         return redirect('firstpage')
+    
+    # 현재 로그인된 사용자의 프로필 정보 가져오기
     user_profile = get_object_or_404(Profile, user=request.user)
-    return render(request, 'main/mainpage.html', {'user': request.user, 'user_profile': user_profile})
+
+    # 모든 작성자와 그들의 게시물 수를 가져오기
+    top_authors = Post.objects.values('author__username')\
+        .annotate(post_count=Count('author'))\
+        .order_by('-post_count')[:3]
+
+    # 현재 사용자가 작성한 게시물 수
+    user_post_count = Post.objects.filter(author=request.user).count()
+
+    context = {
+        'user': request.user,
+        'user_profile': user_profile,
+        'top_authors': top_authors,  # 상위 3명의 작성자와 그들의 게시물 수
+        'user_post_count': user_post_count,  # 현재 사용자가 작성한 게시물 수
+    }
+    
+    return render(request, 'main/mainpage.html', context)
 
 def secondpage_a(request):
     if not request.user.is_authenticated:
@@ -62,31 +86,41 @@ def secondpage_c(request):
         return redirect('firstpage')
     return render(request, 'main/secondpage_c.html')
 
-@login_required
+from django.shortcuts import render
+from django.db.models import Count
+from .models import Post
+
 def categorypage(request, category, subcategory):
+    # 현재 로그인된 사용자가 작성한 해당 카테고리와 서브카테고리의 게시물 필터링
     posts = Post.objects.filter(author=request.user, category=category, subcategory=subcategory)
     
-    top_author = Post.objects.filter(category=category, subcategory=subcategory)\
+    # 해당 카테고리와 서브카테고리에서 상위 3명의 작성자와 그들의 게시물 수를 가져오기
+    top_authors = Post.objects.filter(category=category, subcategory=subcategory)\
         .values('author__username')\
         .annotate(post_count=Count('author'))\
-        .order_by('-post_count')\
-        .first()
+        .order_by('-post_count')[:3] # 3위까지 인덱스 늘려주면 됨
 
-    if top_author:
-        top_author_name = top_author['author__username']
-        post_count = top_author['post_count']
-    else:
-        top_author_name = "대장이 되어보세요!"
-        post_count = 0
+    # 모든 작성자와 그들의 게시물 수를 가져오기
+    authors_with_post_counts = Post.objects.filter(category=category, subcategory=subcategory)\
+        .values('author__username')\
+        .annotate(post_count=Count('author'))\
+        .order_by('-post_count')
+
+    # 현재 사용자의 해당 카테고리와 서브카테고리에서의 게시물 수
+    user_post_count = posts.count()
 
     context = {
-        'category': category,
-        'subcategory': subcategory,
-        'posts': posts,
-        'top_author': top_author_name,
-        'post_count': post_count,
+        'category': category,  # 카테고리 이름
+        'subcategory': subcategory,  # 서브카테고리 이름
+        'posts': posts,  # 현재 로그인된 사용자가 작성한 게시물
+        'top_authors': top_authors,  # 상위 3명의 작성자와 그들의 게시물 수
+        'authors_with_post_counts': authors_with_post_counts,  # 모든 작성자와 그들의 게시물 수
+        'user_post_count': user_post_count,  # 현재 사용자의 게시물 수
     }
+    
+    # 템플릿을 렌더링하고 컨텍스트 데이터를 전달
     return render(request, 'main/categorypage.html', context)
+
 
 @login_required #데코레이터: 로그인된 상태에서만 함수 호출, 로그인 되지 않은 경우 로그인 페이지로 리다이렉트
 def post_detail(request, category, subcategory, post_id):
