@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Profile , Tag
 from django.db.models import Count
 from django.http import JsonResponse
+
 def firstpage(request):
     return render(request, 'main/firstpage.html')
 

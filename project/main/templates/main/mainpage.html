@@ -47,7 +47,7 @@
   <div class="info-detail">
     <p class="p-info">{{ user_profile.studentID }}</p>
     <p class="p-info">{{ user_profile.nickname }}</p>
-    <p class="p-info">2024.03.02 입학</p>
+    <p class="p-info">{{user.date_joined|date:"Y.m.d"}} 입학</p>
     <p class="p-info">{{user_post_count}}개</p>
     <div><img src="{% static 'assets/images/elephant.svg'%}" alt="" /></div>
   </div>
