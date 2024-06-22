@@ -49,56 +49,19 @@
       </div>
       <p id="line"></p>
       <div class="scroll">
+        {%for post in posts%}
+        <a
+        href="{% url 'post_detail' post.category post.subcategory post.id %}?next={% url 'categorypage' category subcategory %}"
+  
+        class=""
+      >
         <div class="category_list">
-          <div>{{post.created_at}}</div>
+          <div>{{post.created_at|date:"Y.m.d"}}</div>
           <div>{{post.title }}</div>
-          <div>날씨</div>
+          <div>{{post.weather}}</div>
         </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
-        <div class="category_list">
-          <div>2024.06.22</div>
-          <div>밤샌날</div>
-          <div>날씨</div>
-        </div>
+      </a>
+        {% endfor %}
       </div>
     </div>
   </div>

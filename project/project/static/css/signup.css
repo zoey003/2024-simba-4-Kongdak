@@ -1,3 +1,12 @@
+#home {
+  visibility: hidden;
+  cursor: none;
+}
+
+p {
+  margin: 0;
+}
+
 .sign-up-frame {
   width: 100%;
   max-height: 100vh;
@@ -5,50 +14,32 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 3.5rem;
 }
-
-.top-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 80%;
-  margin-top: 3rem;
-  border: 1px solid black;
-}
-
-.top-nav div:nth-child(1) {
-  width: 15%;
-  display: flex;
-  justify-content: center;
-}
-
-.top-nav div:nth-child(2) {
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.top-nav div:nth-child(3) {
-  width: 15%;
-  display: flex;
-  justify-content: center;
-}
-
-p {
-  margin: 0;
-}
-
+/* 
 .sign-up-view {
+} */
+
+.sign-up-form {
   width: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  margin-top: 3rem;
+  justify-content: start;
+  align-items: center;
+  gap: 2.5rem;
 }
 
-.sign-up-view input {
-  height: 2.5rem;
+.data-input-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sign-up-form input {
+  height: 3rem;
+  width: 100%;
   flex-shrink: 0;
   border: 1px solid black;
 }
@@ -62,38 +53,46 @@ p {
 }
 
 #sign-up-submit {
-  width: 5rem;
-  padding: 0.4375rem 1.6875rem;
+  width: 6rem;
+  height: 2.5rem;
   gap: 0.625rem;
   border-radius: 0.9375rem;
   background: #d9d9d9;
   border: 0;
 }
 
-.check-btn-view button {
+/* .check-btn-view button {
   position: absolute;
   z-index: 2;
   top: 23vh;
-}
-.sign-up-form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.sign-up-form button {
-  background: #000;
-  height: 1.5rem;
-  width: 5rem;
-  border: 0;
-  padding: 0.25rem 0.6875rem;
-  flex-shrink: 0;
-  color: white;
-  border-radius: 0.625rem;
-}
+} */
 
 .id-check-btn-view {
   margin-top: 0.5rem;
   display: flex;
   justify-content: flex-end;
+}
+
+.hidden-class {
+  display: none;
+}
+
+.warning-text {
+  color: red;
+}
+.warning-input {
+  border: 1.5px solid red !important;
+}
+
+.valid-text {
+  color: rgb(21, 255, 0);
+}
+
+.valid-input {
+  border: 1.5px solid rgb(21, 255, 0) !important;
+}
+
+.abled-btn {
+  background: #000 !important;
+  color: white !important;
 }
