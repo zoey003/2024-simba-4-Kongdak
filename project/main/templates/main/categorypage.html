@@ -3,45 +3,110 @@
 <link
   rel="stylesheet"
   type="text/css"
-  href="{% static 'css/category_1.css'%}"
+  href="{% static 'css/categorypage.css'%}"
 />
 
 <div class="category-view">
   <div class="post_container">
     <div id="post_place">{{subcategory}}</div>
-    <div class="category_1_frame1">
-      <div class="category_1_frame1_1">
-        <div class="label_short">대장코끼리:</div>
-        <div id="crown">
-          <img src="{%static 'assets/images/Crown (2).svg' %}" /> {{top_author}}
+    <div class="category_ranking">
+      <div>누적글 코끼리 순위</div>
+      <p id="line"></p>
+      <div class="category_1_frame1">
+        {% for author in top_authors %}
+        <div class="category_1_top">
+          <div class="label">1위</div>
+          <div id="crown">{{author.author__username}}</div>
+          <div class="gauge-bar">
+            <div class="fill" style="width: 100%"></div>
+          </div>
+          <div class="value">{{author.post_count }}</div>
         </div>
-      </div>
-        <div class="value">{{post_count}}</div>
-      </div>
-      <div class="category_1_frame1_2">
-        <div class="label">내가 채운 추억:</div>
-        <div class="gauge-bar">
-          <div class="fill" style="width: 60%"></div>
+        <div class="category_1_top">
+          <div class="label">2위</div>
+          <div id="crown">{{author.author__username}}</div>
+          <div class="gauge-bar">
+            <div class="fill" style="width: 70%"></div>
+          </div>
+          <div class="value">{{author.post_count}}</div>
         </div>
-        <div class="value">50개</div>
+        <div class="category_1_top">
+          <div class="label">3위</div>
+          <div id="crown">{{author.author__username}}</div>
+          <div class="gauge-bar">
+            <div class="fill" style="width: 40%"></div>
+          </div>
+          <div class="value">{{author.post_count}}</div>
+        </div>
+        {% endfor %}
       </div>
     </div>
 
     <div class="category_1_frame2">
-      <div>나의 글 목록</div>
+      <div class="post_count">
+        <div>나의 글 목록</div>
+        <div>{{user_post_count}}</div>
+      </div>
       <p id="line"></p>
       <div class="scroll">
-        <div class="category_1_frame4">
+        <div class="category_list">
           <div>{{post.created_at}}</div>
           <div>{{post.title }}</div>
           <div>날씨</div>
         </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
+        <div class="category_list">
+          <div>2024.06.22</div>
+          <div>밤샌날</div>
+          <div>날씨</div>
+        </div>
       </div>
-      <!-- 반복된 post 요소를 나열 -->
     </div>
   </div>
-  <div class="category_1_frame3">
-    <a href="" id="save">새로운 추억 남기기</a>
-  </div>
+  <!-- <div class="category_1_frame3">
+  </div> -->
+
+  <a href="{% url 'create_post' category subcategory %}" id="save"
+    >새로운 추억 남기기</a
+  >
 </div>
 {% endblock %}

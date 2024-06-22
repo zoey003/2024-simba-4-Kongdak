@@ -1,26 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %} {% include 'shared/_topnav.html'%}
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/create_post.css'%}"
+/>
 
-{% block content %}
-  {% include 'shared/_topnav.html' %}
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/write.css'%}"/>
-
-  <div class="container">
-    <div id="today">오늘의 일기</div>
-    <div class="diary_frame1">
-      <div>2024년 6월 19일 수요일</div>
-      <div>날씨:</div>
+<div class="creat_container">
+  <div id="today">오늘의 일기</div>
+  <div class="diary_frame1">
+    <div>2024년 6월 19일 수요일</div>
+    <div>날씨:</div>
+  </div>
+  <form id="create_form" action="" method="post">
+    {% csrf_token %}
+    <div class="diary_title">
+      <div>제목:</div>
+      <input type="text" name="title" />
     </div>
-    <textarea name="text" id="text" placeholder="오늘의 추억을 남겨보세요!"></textarea>
-
+    <textarea id="text" placeholder="오늘의 추억을 남겨보세요!" name="content">
+    </textarea>
     <div class="diary_frame2">
       <div>태그:</div>
-      <input type="text"/>
+      <input type="text" name="tags" />
     </div>
-
-    <div class="diary_frame3">
-      <button type="submit" id="diary_save">저장</button>
-    </div>
-  </div>
+    <button type="submit" id="diary_save">저장</button>
+  </form>
+</div>
 
 {% endblock %}
