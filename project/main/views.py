@@ -134,12 +134,6 @@ def categorypage(request, category, subcategory):
     # 템플릿을 렌더링하고 컨텍스트 데이터를 전달
     return render(request, 'main/categorypage.html', context)
 
-
-@login_required #데코레이터: 로그인된 상태에서만 함수 호출, 로그인 되지 않은 경우 로그인 페이지로 리다이렉트
-def post_detail(request, category, subcategory, post_id):
-    post = get_object_or_404(Post, id=post_id, category=category, subcategory=subcategory)
-    return render(request, 'main/post_detail.html', {'post': post})
-
 @login_required
 def create_post(request, category, subcategory):
     if request.method == 'POST':
