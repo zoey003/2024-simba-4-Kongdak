@@ -7,6 +7,8 @@ from .models import Post, Profile , Tag
 from django.db.models import Count
 from django.http import JsonResponse
 from datetime import datetime, timedelta
+from .utils import get_weather
+
 
 
 def firstpage(request):
@@ -75,6 +77,9 @@ def mainpage(request):
         .annotate(post_count=Count('author'))\
         .order_by('-post_count')[:3]
 
+    # 날씨 정보 가져오기
+    weather_main = get_weather()
+
     context = {
         'user': request.user,
         'user_profile': user_profile,
@@ -82,9 +87,10 @@ def mainpage(request):
         'user_post_count': user_post_count,  # 현재 사용자가 작성한 게시물 수
         'days_since_joined': days_since_joined,  # 가입일로부터 경과한 일수
         'weekly_top_authors': weekly_top_authors,  # 주간 랭킹 상위 3명
+        'weather_main': weather_main,  # 날씨 정보
     }
     
-    return render(request, 'main/mainpage.html', context) ###
+    return render(request, 'main/mainpage.html', context)
 
 
 def secondpage_a(request):
@@ -136,6 +142,8 @@ def categorypage(request, category, subcategory):
 
 @login_required
 def create_post(request, category, subcategory):
+    weather_main = get_weather()
+
     if request.method == 'POST':
         title = request.POST.get('title', '')
         content = request.POST.get('content', '')
@@ -144,18 +152,19 @@ def create_post(request, category, subcategory):
         if not title or not content:
             messages.error(request, 'Title and content are required.')
         else:
+            # Post 객체 생성 및 저장
             post = Post.objects.create(
                 title=title,
                 content=content,
                 author=request.user,
                 category=category,
-                subcategory=subcategory
+                subcategory=subcategory,
+                weather=weather_main
             )
 
             # 태그 처리
             if tags_str:
-                # 중간에 있는 모든 공백 제거
-                tags_str = tags_str.replace(' ', '')
+                tags_str = tags_str.replace(' ', '')  # 중간에 있는 모든 공백 제거
                 tags_list = [tag.strip() for tag in tags_str.split('#') if tag.strip()]
                 for tag_name in tags_list:
                     tag, created = Tag.objects.get_or_create(name=tag_name)
@@ -163,7 +172,11 @@ def create_post(request, category, subcategory):
 
             return redirect('categorypage', category=category, subcategory=subcategory)
 
-    return render(request, 'main/create_post.html', {'category': category, 'subcategory': subcategory})
+    return render(request, 'main/create_post.html', {
+        'category': category,
+        'subcategory': subcategory,
+        'weather_main': weather_main,
+    })
 
 
 @login_required
@@ -171,7 +184,9 @@ def edit_post(request, category, subcategory, post_id):
     post = get_object_or_404(Post, id=post_id)
     if request.user != post.author:
         return redirect('post_detail', category=category, subcategory=subcategory, post_id=post_id)
-    
+
+    weather_main = get_weather()
+
     if request.method == 'POST':
         title = request.POST.get('title', '')
         content = request.POST.get('content', '')
@@ -180,8 +195,10 @@ def edit_post(request, category, subcategory, post_id):
         if not title or not content:
             messages.error(request, 'Title and content are required.')
         else:
+            # 글 수정 및 날씨 업데이트
             post.title = title
             post.content = content
+            post.weather = weather_main
             post.save()
 
             # 태그 처리
@@ -194,11 +211,12 @@ def edit_post(request, category, subcategory, post_id):
                     post.tags.add(tag)
 
             return redirect('post_detail', category=category, subcategory=subcategory, post_id=post.id)
-    
+
     return render(request, 'main/edit_post.html', {
         'post': post,
         'category': category,
         'subcategory': subcategory,
+        'weather_main': weather_main,
         'tags': ' '.join(f'#{tag.name}' for tag in post.tags.all())
     })
 
@@ -239,13 +257,19 @@ def all_posts(request):
 def bookmark(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
-    if request.user in post.bookmark.all():
-        post.bookmark.remove(request.user)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        if request.user in post.bookmark.all():
+            post.bookmark.remove(request.user)
+            is_bookmarked = False
+        else:
+            post.bookmark.add(request.user)
+            is_bookmarked = True
 
-    else:
-        post.bookmark.add(request.user)
+        data = {'success': True, 'is_bookmarked': is_bookmarked}
+        return JsonResponse(data)
 
-    return redirect('all_posts')
+    return JsonResponse({'success': False, 'error': 'Invalid request'})
+
 
 @login_required
 def search_by_tag(request):
