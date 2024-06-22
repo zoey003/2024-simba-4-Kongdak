@@ -20,7 +20,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return JsonResponse({'success': True})
+            return JsonResponse({'success': True}, status=200)
         else:
             return JsonResponse({'success': False, 'error': 'Invalid username or password.'}, status=400)
     return render(request, 'main/firstpage.html')

@@ -1,31 +1,46 @@
-{% extends 'base.html' %}
-{% block content %}
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}"/>
-  <div class="login-view">
-    <img src="{% static 'assets/images/loginImg.png'%}" alt="노트" class="login-main-img">
-    <div class="title-view">
-      <p>대학생활의 설렘을 간직해보세요.</p>
-      <p>콩닥콩닥</p>
-      <img src="{% static 'assets/images/loginSignal.png'%}" alt="">
-    </div>
-
-    <div class="input-view">
-      <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="username" id="username" placeholder="아이디">
-        <input type="password" name="password" id="password" placeholder="비밀번호">
-        <button>
-          <p>로그인</p>
-        </button>
-      </form>
-    </div>
-    <div class="signup-view">
-      <a href="{% url 'signup' %}">회원가입</a>
-    </div>
-    <div class="copyright-view">
-      <p>Copyright ⓒ 2024. 동국대학교 멋쟁이사자처럼</p>
-      <p>심바톤 4조 All rights reserved.</p>
-    </div>
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}" />
+<div class="login-view">
+  <img
+    src="{% static 'assets/images/loginImg.png'%}"
+    alt="노트"
+    class="login-main-img"
+  />
+  <div class="title-view">
+    <p>대학생활의 설렘을 간직해보세요.</p>
+    <p>콩닥콩닥</p>
+    <img src="{% static 'assets/images/loginSignal.png'%}" alt="" />
   </div>
+
+  <div class="input-view">
+    <form action="{% url 'login' %}" method="post" id="login-form">
+      {% csrf_token %}
+      <input type="text" name="username" id="username" placeholder="아이디" />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="비밀번호"
+      />
+      <div id="error">*잘못된 아이디나 비밀번호입니다.</div>
+      <button type="submit" id="loginButton" disabled>
+        <p>로그인</p>
+      </button>
+    </form>
+  </div>
+  <div class="signup-view">
+    <a href="{% url 'signup' %}">회원가입</a>
+  </div>
+  <div class="copyright-view">
+    <p>Copyright ⓒ 2024. 동국대학교 멋쟁이사자처럼</p>
+    <p>심바톤 4조 All rights reserved.</p>
+  </div>
+</div>
+
+<script>
+  const loginUrl = "{% url 'login' %}";
+  const redirectUrl = "{% url 'mainpage' %}";
+</script>
+
+<script src="{% static 'js/login.js' %}"></script>
 {% endblock %}
