@@ -1,32 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% include 'shared/_topnav.html'%}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/create_post.css'%}"/>
 
-{% extends 'base.html' %} {% block content %} {% include 'shared/_topnav.html'%}
-{% load static %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/create_post.css'%}"
-/>
-
-<div class="creat_container">
-  <div id="today">오늘의 일기</div>
-  <div class="diary_frame1">
-    <div>2024년 6월 19일 수요일</div>
-    <div>날씨:</div>
+  <div class="create_container">
+    <div id="today">오늘의 일기</div>
+    <div class="diary_frame1">
+      <div id="today-zone"></div>
+      <div>날씨:</div>
+    </div>
+    <form id="create_form" action="" method="post">
+      {% csrf_token %}
+      <div class="diary_title">
+        <div>제목:</div>
+        <input type="text" name="title" placeholder="제목은 8자 이하로 작성 가능합니다."/>
+      </div>
+      <textarea id="text" placeholder="오늘의 추억을 남겨보세요!" name="content"></textarea>
+      <label class="tag-frame">
+        <div>태그:</div><input id="tag-zone" type="text" name="tags" placeholder="태그 입력 후 엔터를 눌러주세요!"/>
+      </label>
+      <button type="submit" class="disabled-btn" id="diary_save" disabled="disabled">저장</button>
+    </form>
   </div>
-  <form id="create_form" action="" method="post">
-    {% csrf_token %}
-    <div class="diary_title">
-      <div>제목:</div>
-      <input type="text" name="title" />
-    </div>
-    <textarea id="text" placeholder="오늘의 추억을 남겨보세요!" name="content">
-    </textarea>
-    <div class="diary_frame2">
-      <div>태그:</div>
-      <input type="text" name="tags" />
-    </div>
-    <button type="submit" id="diary_save">저장</button>
-  </form>
-</div>
-
+  <script src="{% static "js/createPost.js" %}"></script>
 {% endblock %}

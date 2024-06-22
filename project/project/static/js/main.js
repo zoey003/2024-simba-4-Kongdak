@@ -4,6 +4,7 @@ const confirmLogout = document.getElementById("confirm-logout");
 const cancelLogout = document.getElementById("cancel-logout");
 const contentToBlur = document.querySelectorAll("#root > *:not(#logout-modal)");
 const searchBtn = document.querySelector(".search-view");
+const collectionBtn = document.querySelector(".collection-view");
 
 function getCurrentDate() {
   const today = new Date();
@@ -67,4 +68,8 @@ confirmLogout.addEventListener("click", function () {
 
 searchBtn.addEventListener("click", function () {
   window.location.href = searchUrl;
+});
+
+collectionBtn.addEventListener("click", () => {
+  window.location.href = allPostUrl;
 });
