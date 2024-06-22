@@ -4,23 +4,27 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile , Tag
-from .forms import PostForm
 from django.db.models import Count
+from django.http import JsonResponse
+
 def firstpage(request):
     return render(request, 'main/firstpage.html')
 
+def signup_done(request):
+    return render(request,'main/signup_done.html')
+
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return redirect('mainpage')
-        
+            return JsonResponse({'success': True})
         else:
-            messages.error(request, 'Invalid username or password.')
+            return JsonResponse({'success': False, 'error': 'Invalid username or password.'}, status=400)
     return render(request, 'main/firstpage.html')
+
 
 def signup(request):
     if request.method == 'POST':
@@ -37,7 +41,7 @@ def signup(request):
                 Profile.objects.create(user=user, nickname=nickname, studentID=studentID)
                 messages.success(request, 'Account created successfully.')
 
-                return redirect('firstpage')
+                return redirect('signup_done')
     return render(request, 'main/signup.html')
 
 
@@ -183,8 +187,20 @@ def delete_post(request, category, subcategory, post_id):
     post = get_object_or_404(Post, id=post_id)
     if request.user == post.author:
         post.delete()
-    return redirect('categorypage', category=category, subcategory=subcategory)
+    
+    # 쿼리 매개변수에서 next URL을 가져옵니다.
+    next_url = request.GET.get('next')
+    
+    # next URL이 유효하면 해당 URL로 리디렉션, 그렇지 않으면 기본 카테고리 페이지로 리디렉션
+    if next_url:
+        return redirect(next_url)
+    else:
+        return redirect('categorypage', category=category, subcategory=subcategory)
 
+@login_required
+def post_detail(request, category, subcategory, post_id):
+    post = get_object_or_404(Post, id=post_id, category=category, subcategory=subcategory)
+    return render(request, 'main/post_detail.html', {'post': post, 'next': request.GET.get('next')})
 @login_required
 def all_posts(request):
     posts = Post.objects.all()
@@ -203,10 +219,9 @@ def bookmark(request, post_id):
 
     if request.user in post.bookmark.all():
         post.bookmark.remove(request.user)
-        messages.success(request, '북마크가 제거되었습니다.')
+
     else:
         post.bookmark.add(request.user)
-        messages.success(request, '게시물이 북마크되었습니다.')
 
     return redirect('all_posts')
 

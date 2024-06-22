@@ -39,7 +39,7 @@
         />
       </svg>
     </a>
-    <a href="{% url 'delete_post' post.category post.subcategory post.id %}" id="delete_diary">
+    <a href=" {% url 'delete_post' post.category post.subcategory post.id %}?next={{ request.GET.next }}" id="delete_diary">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
