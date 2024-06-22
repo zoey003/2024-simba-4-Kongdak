@@ -9,7 +9,7 @@ p {
 
 .sign-up-frame {
   width: 100%;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +45,7 @@ p {
 }
 
 .submit-view {
-  margin-top: 3rem;
+  margin: 1rem 0;
   width: 100%;
   display: flex;
   justify-content: center;
