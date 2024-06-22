@@ -75,11 +75,11 @@
 </div>
 <script>
   const editUrl =
-    "{% url 'edit_post' post.category post.subcategory post.id %}";
+   "{% url 'edit_post' category=post.category subcategory=post.subcategory post_id=post.id %}";
   const deleteUrl =
     "{% url 'delete_post' category=post.category subcategory=post.subcategory post_id=post.id %}?next={{ request.GET.next }}";
   const detailpostUrl =
-    "{% url 'post_detail' post.category post.subcategory post.id%}";
+    "{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}";
 </script>
 <script src="{% static 'js/postDetail.js' %}"></script>
 {% endblock %}

@@ -37,8 +37,8 @@
         {%for post in posts%}
 
         <a
-          href="{% url 'post_detail' post.category post.subcategory post.id %}?next={% url 'categorypage' category subcategory %}"
-          class="category_list"
+        href="{% url 'post_detail' post.category post.subcategory post.id %}?next={% url 'categorypage' category subcategory %}"
+        class="category_list"
         >
           <div>{{post.created_at|date:"Y.m.d"}}</div>
           <div>{{post.title }}</div>

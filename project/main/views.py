@@ -239,12 +239,12 @@ def delete_post(request, category, subcategory, post_id):
     else:
         return redirect('categorypage', category=category, subcategory=subcategory)
 
+
 @login_required
 def post_detail(request, category, subcategory, post_id):
     post = get_object_or_404(Post, id=post_id, category=category, subcategory=subcategory)
     return render(request, 'main/post_detail.html', {'post': post, 'next': request.GET.get('next')})
-  
-@login_required
+
 @login_required
 def all_posts(request):
     posts = Post.objects.filter(author=request.user)
