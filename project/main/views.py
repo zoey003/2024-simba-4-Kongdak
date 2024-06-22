@@ -61,11 +61,15 @@ def mainpage(request):
     # 현재 사용자가 작성한 게시물 수
     user_post_count = Post.objects.filter(author=request.user).count()
 
+    # 현재 사용자가 북마크한 게시물 가져오기
+    bookmarked_posts = Post.objects.filter(bookmark=request.user)
+
     context = {
         'user': request.user,
         'user_profile': user_profile,
         'top_authors': top_authors,  # 상위 3명의 작성자와 그들의 게시물 수
         'user_post_count': user_post_count,  # 현재 사용자가 작성한 게시물 수
+        'bookmarked_posts': bookmarked_posts,  # 현재 사용자가 북마크한 게시물
     }
     
     return render(request, 'main/mainpage.html', context)
