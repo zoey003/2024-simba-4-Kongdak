@@ -8,7 +8,7 @@ const studentID = document.querySelector("#studentID");
 const studentInfo = document.querySelector("#student-info");
 const signupBtn = document.querySelector("#sign-up-submit");
 
-const validPW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+const validPW = /^(?=.*[A-Za-z])(?=.*\d)[\w\d!@#$%^&*]{8,}$/;
 const validName = /^[A-Za-z가-힣]{1,}$/;
 const validStudentID = /^\d{10}$/;
 

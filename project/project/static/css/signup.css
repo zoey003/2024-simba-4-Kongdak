@@ -27,7 +27,7 @@ p {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .data-input-view {
@@ -74,7 +74,8 @@ p {
 }
 
 .hidden-class {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
 }
 
 .warning-text {
