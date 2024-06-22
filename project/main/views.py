@@ -78,6 +78,7 @@ def mainpage(request):
 
     # 날씨 정보 가져오기
     weather_main = get_weather()
+    bookmarked_posts = request.user.bookmark.all()
 
     context = {
         'user': request.user,
@@ -87,6 +88,7 @@ def mainpage(request):
         'days_since_joined': days_since_joined,  # 가입일로부터 경과한 일수
         'weekly_top_authors': weekly_top_authors,  # 주간 랭킹 상위 3명
         'weather_main': weather_main,  # 날씨 정보
+        'bookmarked_posts': bookmarked_posts  # 북마크한 게시물
     }
     
     return render(request, 'main/mainpage.html', context)
@@ -241,15 +243,15 @@ def post_detail(request, category, subcategory, post_id):
     return render(request, 'main/post_detail.html', {'post': post, 'next': request.GET.get('next')})
   
 @login_required
+@login_required
 def all_posts(request):
     posts = Post.objects.filter(author=request.user)
-
     bookmarked_posts = request.user.bookmark.all()
 
     for post in posts:
         post.is_bookmarked = post in bookmarked_posts
 
-    return render(request, 'main/all_posts.html', {'posts': posts})
+    return render(request, 'main/all_posts.html', {'posts': posts, 'bookmarked_posts': bookmarked_posts})
     
 
 @login_required
@@ -288,9 +290,14 @@ def search_by_tag(request):
     return render(request, 'main/search.html', context)
 
 def check_username(request):
-    username = request.GET.get('username', None)
-    data = {
-        'is_taken': User.objects.filter(username=username).exists()
-    }
-    return JsonResponse(data)
+    if request.method == 'POST':
+        import json
+        data = json.loads(request.body)
+        username = data.get('username', None)
+        is_taken = User.objects.filter(username=username).exists()
+        response = {
+            'is_taken': is_taken
+        }
+        return JsonResponse(response)
+    return JsonResponse({'error': '잘못된 요청입니다.'}, status=400)
 
