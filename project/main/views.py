@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Profile , Tag
 from django.db.models import Count
 from django.http import JsonResponse
+
 def firstpage(request):
     return render(request, 'main/firstpage.html')
 
@@ -218,10 +219,9 @@ def bookmark(request, post_id):
 
     if request.user in post.bookmark.all():
         post.bookmark.remove(request.user)
-        messages.success(request, '북마크가 제거되었습니다.')
+
     else:
         post.bookmark.add(request.user)
-        messages.success(request, '게시물이 북마크되었습니다.')
 
     return redirect('all_posts')
 
