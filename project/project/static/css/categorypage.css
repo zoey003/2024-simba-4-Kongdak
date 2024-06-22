@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  justify-content: space-between;
+  height: 80vh;
   align-items: center;
   background-image: url("../assets/images/background_category.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover; /*이미지 확대*/
+  background-size: cover; /* 이미지 확대 */
   gap: 0.5rem;
+  overflow: hidden;
 }
 
 .post_container {
@@ -17,42 +17,52 @@
   display: flex;
   flex-direction: column;
   width: 80%;
-  height: 50vh;
+  height: 70vh;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   border: 1px solid #000;
   background: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  gap: 0.5rem;
+  gap: 0.9rem;
   line-height: normal;
 }
 
 #post_place {
   display: flex;
-  margin-top: 1.3rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
   color: #000;
   text-align: center;
   font-size: 1.3rem;
   font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+.category_ranking {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  font-size: 1rem;
+  gap: 0.45rem;
 }
 
 .category_1_frame1 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 80%;
-  margin: 1.1rem 0.3rem;
+  width: 95%;
   gap: 0.3rem;
   font-size: 1rem;
   font-weight: 400;
 }
 
-.category_1_frame1_1,
-.category_1_frame1_2 {
+.category_1_top {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 0.8rem;
+  gap: 0.3rem;
   align-items: center;
 }
 
@@ -67,32 +77,29 @@
   height: 0.8rem;
   overflow: hidden;
 }
+
 .fill {
   height: 100%;
   background-color: #76c7c0;
 }
+
 .value {
   flex: 0.5;
   text-align: right;
-}
-.label_short {
-  flex: 0.5;
-}
-
-#crown {
-  display: flex;
-  align-items: center;
 }
 
 .category_1_frame2 {
   display: flex;
   flex-direction: column;
-  height: 50svh;
+  width: 80%;
   align-items: flex-start;
-  gap: 0.8rem;
-}
-.category_1_frame2 > div:nth-child(1) {
+  gap: 0.5rem;
   font-size: 1.1rem;
+}
+.post_count {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 #line {
@@ -104,43 +111,33 @@
 .scroll {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 60%;
   align-items: center;
   gap: 0.4rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.category_1_frame4 {
+.category_list {
   display: flex;
   padding: 0 0.35rem 0.7rem 0.35rem;
   justify-content: center;
   gap: 1rem;
+  width: 98%;
   border-bottom: 2px dashed #000;
-  color: #000;
-  font-size: 1rem;
 }
-/* .category_1_frame3 {
-  display: flex;
-  width: 426px;
-  justify-content: center;
-  align-self: center;
-  background: #fff;
-  position: absolute;
-  bottom: 0;
-  gap: 0;
-} */
 
 #save {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 300px;
-  height: 2.5rem;
-  border-radius: 0.8rem;
+  height: 2.7rem;
+  border-radius: 0.9rem;
   background: #fe8535;
   color: #fff;
   font-size: 0.9rem;
   position: absolute;
   bottom: 1rem;
 }
-
-/* 수정완료 */
