@@ -7,18 +7,23 @@ const nameInfo = document.querySelector("#nickname-info");
 const studentID = document.querySelector("#studentID");
 const studentInfo = document.querySelector("#student-info");
 const signupBtn = document.querySelector("#sign-up-submit");
+const idTest = document.querySelector("#id-input");
+const validCheckBtn = document.querySelector(".check-button");
+const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+const idInfo = document.querySelector("#id-info");
 
 const validPW = /^(?=.*[A-Za-z])(?=.*\d)[\w\d!@#$%^&*]{8,}$/;
 const validName = /^[A-Za-z가-힣]{1,}$/;
 const validStudentID = /^\d{10}$/;
 
+let idStatus = false;
 let pwStatus = false;
 let confirmStatus = false;
 let nameStatus = false;
 let codeStatus = false;
 
 function checkFormValidity() {
-  if (pwStatus && confirmStatus && nameStatus && codeStatus) {
+  if (idStatus && pwStatus && confirmStatus && nameStatus && codeStatus) {
     signupBtn.disabled = false;
     signupBtn.classList.add("abled-btn");
   } else {
@@ -94,4 +99,38 @@ studentID.addEventListener("input", () => {
     codeStatus = false;
   }
   checkFormValidity();
+});
+
+validCheckBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  fetch(`/check_username/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrfToken,
+      "X-Requested-With": "XMLHttpRequest",
+    },
+    body: JSON.stringify({ username: idTest.value }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.is_taken) {
+        idInfo.classList.remove("hidden-class");
+        idInfo.classList.add("warning-text");
+        idInfo.classList.remove("valid-text");
+        idInfo.textContent = "사용 중인 아이디입니다.";
+        idStatus = false;
+      } else {
+        idInfo.classList.remove("hidden-class");
+        idInfo.classList.add("valid-text");
+        idInfo.classList.remove("warning-text");
+        idInfo.textContent = "사용 가능한 아이디입니다.";
+        idStatus = true;
+      }
+      checkFormValidity();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 });

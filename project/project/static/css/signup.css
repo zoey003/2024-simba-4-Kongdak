@@ -79,14 +79,14 @@ p {
 }
 
 .warning-text {
-  color: red;
+  color: red !important;
 }
 .warning-input {
   border: 1.5px solid red !important;
 }
 
 .valid-text {
-  color: rgb(21, 255, 0);
+  color: green !important;
 }
 
 .valid-input {
@@ -96,4 +96,21 @@ p {
 .abled-btn {
   background: #000 !important;
   color: white !important;
+}
+
+.input-container {
+  position: relative;
+  display: inline-block;
+}
+#id-input {
+  width: 100%;
+}
+.check-button {
+  position: absolute;
+  right: 3%;
+  top: 20%;
+  width: 20%;
+  height: 60%;
+  border: none;
+  border-radius: 0.625rem;
 }

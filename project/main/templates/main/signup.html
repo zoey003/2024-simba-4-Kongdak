@@ -8,8 +8,11 @@
       {% csrf_token %}
       <div class="data-input-view">
         <label for="id-input">아이디</label>
-        <input type="text" name="username" id="id-input"/>
-        <p id="id-info" class="hidden-class">아이디 중복 확인 후 이용해주세요.</p>
+        <div class="input-container">
+          <input type="text" name="username" id="id-input"/>
+          <button class="check-button abled-btn">중복확인</button>
+        </div>
+        <p id="id-info" class="hidden-class"></p>
       </div>
       <div class="data-input-view">
         <label for="password">비밀번호</label>

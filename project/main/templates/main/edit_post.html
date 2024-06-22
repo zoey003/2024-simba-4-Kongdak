@@ -8,7 +8,9 @@
     <div id="today-zone">{{ post.created_at|date:"Y년 m월 d일 l" }}</div>
     <div>날씨:{{post.weather}}</div>
   </div>
-  <div id="create_form">
+  <form id="create_form" action="" method="post">
+    {% csrf_token %}
+
     <div class="diary_title">
       <div>제목:</div>
       <input type="text" name="title" value="{{ post.title }}" />
@@ -27,7 +29,7 @@
     >
       저장
     </button>
-  </div>
+  </form>
 </div>
 <script src="{% static 'js/editPost.js' %}"></script>
 

@@ -9,7 +9,8 @@
       <img src="{% static 'assets/images/heart.svg'%}" alt=""/>
     </div>
     <div id="today-view" class="item2"></div>
-    <div class="item3">날씨</div>
+    <div class="item3">날씨 :
+      {{weather_main}}</div>
   </div>
   <div class="campus-view">
     <div class="select-view">
@@ -71,7 +72,7 @@
     <div class="best-detail">
       {% for post in bookmarked_posts %}
         <div class="best-box">
-          <p>{{post.created_at}}</p>
+          <p>{{ post.created_at|date:"Y.m.d" }}</p>
           <p>{{ post.title }}</p>
           <p>{{ post.subcategory }}</p>
         </div>
