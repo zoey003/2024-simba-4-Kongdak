@@ -4,23 +4,33 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  gap: 0.5rem;
 }
 
-#search {
+#search-box {
   display: flex;
   width: 80%;
-  height: 40px;
+  height: 3rem;
   border: solid 1px black;
-  margin-top: 120px;
-  justify-content: center;
+  margin-top: 1rem;
   align-items: center;
+  justify-content: space-between;
 }
 
-#search input {
+#search-box img {
+  display: flex;
+  justify-content: flex-end;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding-right: 1rem;
+}
+#search-box input {
   flex-grow: 1;
+  height: 1.8rem;
   border: none;
   outline: none;
-  padding: 8px;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
 #search svg {
@@ -30,23 +40,19 @@
 .search_frame0 {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   padding-top: 20px;
   width: 80%;
-  gap: 7px;
+  gap: 0.5rem;
 }
 
 .search_frame0 > div:nth-child(1) {
   display: flex;
   align-items: flex-start;
-  color: #000;
-  font-size: 16px;
-  font-style: normal;
+  font-size: 1.2rem;
   font-weight: 400;
-  line-height: normal;
 }
 
-p {
+#search_line {
   width: 100%;
   height: 1px;
   background: #000;
@@ -55,30 +61,48 @@ p {
 .search_frame1 {
   display: flex;
   flex-direction: column;
-  width: 100%; /* 부모 요소의 너비를 정확히 정의 */
-  margin-top: 10px;
-  gap: 10px;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
+
+  gap: 0.8rem;
+  overflow-y: auto;
+  align-self: center;
 }
 
+#search_none {
+  display: none;
+  margin-top: 3rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
 .search_list {
   display: flex;
   flex-direction: row;
-  width: 100%; /* 부모 요소의 너비를 완전히 상속 */
-  box-sizing: border-box; /* 패딩과 경계선을 포함하여 너비 조정 */
-  gap: 15px;
+  gap: 0.3rem;
+  width: 100%;
   border-bottom: dashed 2px black;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  color: #000;
-  font-size: 16px;
-  text-align: center;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  padding-bottom: 10px;
+  font-size: 1rem;
+  padding: 0.3rem;
 }
-
-svg {
+.search_list div {
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+}
+.search_list > div:nth-child(1) {
+  width: 35%;
+}
+.search_list > div:nth-child(2) {
+  width: 40%;
+}
+.search_list > div:nth-child(3) {
+  width: 30%;
+}
+.search-img {
   display: flex;
   justify-content: flex-end;
 }
@@ -86,7 +110,6 @@ svg {
 .search_place {
   display: flex;
   border-radius: 8px;
-  border: solid 1px black;
   padding: 4px 7px;
   justify-content: center;
   align-items: center;
