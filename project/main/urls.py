@@ -19,9 +19,4 @@ urlpatterns = [
     path('', auth_views.LogoutView.as_view(next_page='firstpage'), name='logout'),
     path('post/<int:post_id>/bookmark/', views.bookmark, name='bookmark'),
     path('search/tag/', views.search_by_tag, name='search_by_tag'),
-<<<<<<< HEAD
 ]
-
-=======
-]
->>>>>>> 702bb1ae7e9f6bd711b197cd971d33bf8776ba23
