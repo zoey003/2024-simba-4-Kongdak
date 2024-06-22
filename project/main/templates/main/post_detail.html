@@ -1,31 +1,37 @@
 {% extends 'base.html' %} {% block content %} {% include 'shared/_topnav.html'%}
 {% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/post_detail.css'%}"
+/>
 
-<link rel="stylesheet" type="text/css" href="../static/css/post_detail.css" />
 <div class="edit_container">
   <div class="edit_frame1">
-    <div>2024년 6월 19일 수요일</div>
-    <div>날씨:</div>
+    <div>{{ post.created_at|date:"Y년 m월 d일 l" }}</div>
+    <div>{{post.weather}}</div>
   </div>
 
   <div class="edit_title">
     <div>제목:</div>
-    <input type="text" name="title" id="edit_input" />
+    <div>{{post.title}}</div>
   </div>
 
-  <textarea
-    name="content"
-    id="edit_textarea"
-    placeholder="안녕하세요!!"
-  ></textarea>
+  <div name="content" id="edit_textarea">
+    <div>{{post.content}}</div>
+  </div>
 
   <div class="edit_frame2">
-    <div class="edit_tag">
-      <div>태그:</div>
-      <input type="text" name="tags" />
-    </div>
-<div></div>
-    <a href="{% url 'edit_post' post.category post.subcategory post.id %}" id="edit_diary">
+    <div>태그:</div>
+    {% for tag in post.tags.all %}
+    <div>{{ tag.name }}</div>
+    {% endfor %}
+  </div>
+
+  <div class="edit_frame3">
+    <div id="back_edit">뒤로가기</div>
+
+    <button id="edit_diary">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
@@ -38,8 +44,8 @@
           fill="black"
         />
       </svg>
-    </a>
-    <a href=" {% url 'delete_post' post.category post.subcategory post.id %}?next={{ request.GET.next }}" id="delete_diary">
+    </button>
+    <button id="delete_diary">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"
@@ -59,4 +65,21 @@
     </button>
   </div>
 </div>
+
+<div id="delete-modal" class="modal hidden-class">
+  <div class="modal-content">
+    <p id="delete-msg">삭제하시겠습니까?</p>
+    <button id="confirm-delete">네</button>
+    <button id="cancel-delete">아니오</button>
+  </div>
+</div>
+<script>
+  const editUrl =
+    "{% url 'edit_post' post.category post.subcategory post.id %}";
+  const deleteUrl =
+    "{% url 'delete_post' category=post.category subcategory=post.subcategory post_id=post.id %}?next={{ request.GET.next }}";
+  const detailpostUrl =
+    "{% url 'post_detail' post.category post.subcategory post.id%}";
+</script>
+<script src="{% static 'js/postDetail.js' %}"></script>
 {% endblock %}
