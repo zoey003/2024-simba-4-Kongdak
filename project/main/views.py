@@ -10,9 +10,6 @@ from datetime import datetime, timedelta
 from .utils import get_weather
 
 
-
-
-
 def firstpage(request):
     return render(request, 'main/firstpage.html')
 
@@ -259,13 +256,19 @@ def all_posts(request):
 def bookmark(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
-    if request.user in post.bookmark.all():
-        post.bookmark.remove(request.user)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        if request.user in post.bookmark.all():
+            post.bookmark.remove(request.user)
+            is_bookmarked = False
+        else:
+            post.bookmark.add(request.user)
+            is_bookmarked = True
 
-    else:
-        post.bookmark.add(request.user)
+        data = {'success': True, 'is_bookmarked': is_bookmarked}
+        return JsonResponse(data)
 
-    return redirect('all_posts')
+    return JsonResponse({'success': False, 'error': 'Invalid request'})
+
 
 @login_required
 def search_by_tag(request):
