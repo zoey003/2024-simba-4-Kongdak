@@ -4,10 +4,12 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Post, Profile , Tag
-from .forms import PostForm
 from django.db.models import Count
 def firstpage(request):
     return render(request, 'main/firstpage.html')
+
+def signup_done(request):
+    return render(request,'main/signup_done.html')
 
 def login(request):
     if request.method == 'POST':
@@ -37,7 +39,7 @@ def signup(request):
                 Profile.objects.create(user=user, nickname=nickname, studentID=studentID)
                 messages.success(request, 'Account created successfully.')
 
-                return redirect('firstpage')
+                return redirect('signup_done')
     return render(request, 'main/signup.html')
 
 
