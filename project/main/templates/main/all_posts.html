@@ -1,43 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>All Posts</title>
-  </head>
-  <body>
-    <h1>All Posts</h1>
-    <ul>
-      {% for post in posts %}
-      <li>
-        {{ post.title }}
-        <!-- 북마크 폼 -->
-        <form action="{% url 'bookmark' post.id %}" method="post">
-          {% csrf_token %}
-          <button type="submit">
-            {% if post.is_bookmarked %} Unbookmark {% else %} Bookmark {% endif
-            %}
-          </button>
-        </form>
-        <!-- 게시물 상세 링크 -->
-        <a href="{% url 'post_detail' post.category post.subcategory post.id %}"
-          >Detail</a
-        >
-      </li>
-      {% endfor %}
-    </ul>
-    <a href="{% url 'mainpage' %}">Back to Main Page</a>
-  </body>
-</html>
-======= {% extends 'base.html' %} {% block content %} {% include
-'shared/_topnav.html'%} {% load static %}
+{% extends 'base.html' %} {% block content %} {% include 'shared/_topnav.html'%}
+{% load static %}
 
 <link rel="stylesheet" type="text/css" href="../static/css/all_posts.css" />
 <div class="all_posts_container">
   <p id="all_line"></p>
+  {% for post in posts %}
   <div class="all_posts_frame1">
-    <a href="" class="all_posts_list">
-      <div>2024.06.22</div>
-      <div>김치만먹고싶다</div>
-      <div class="place">신공학관</div>
+    <a
+      href="{% url 'post_detail' post.category post.subcategory post.id %}"
+      class="all_posts_list"
+    >
+      <div>{{post.created_at}}</div>
+      <div>{{post.title}}</div>
+      <div class="place">{{post.subcategory}}</div>
 
       <button>
         <svg
@@ -56,5 +31,6 @@
       </button>
     </a>
   </div>
+  {% endfor%}
 </div>
 {% endblock %}
