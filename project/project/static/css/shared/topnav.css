@@ -38,3 +38,8 @@
 p {
   margin: 0;
 }
+
+#back,
+#home {
+  cursor: pointer;
+}
