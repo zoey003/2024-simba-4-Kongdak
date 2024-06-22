@@ -188,7 +188,27 @@ def delete_post(request, category, subcategory, post_id):
 @login_required
 def all_posts(request):
     posts = Post.objects.all()
+
+    bookmarked_posts = request.user.bookmark.all()
+
+    for post in posts:
+        post.is_bookmarked = post in bookmarked_posts
+
     return render(request, 'main/all_posts.html', {'posts': posts})
+    
+
+@login_required
+def bookmark(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.user in post.bookmark.all():
+        post.bookmark.remove(request.user)
+        messages.success(request, '북마크가 제거되었습니다.')
+    else:
+        post.bookmark.add(request.user)
+        messages.success(request, '게시물이 북마크되었습니다.')
+
+    return redirect('all_posts')
 
 @login_required
 def search_by_tag(request):

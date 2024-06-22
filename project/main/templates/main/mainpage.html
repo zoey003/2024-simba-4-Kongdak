@@ -1,105 +1,108 @@
-{% extends 'base.html' %}
-{% block content %}
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}"/>
-  <div class="grid-nav">
-    <div class="item1">
-      <img src="{% static 'assets/images/heart.svg'%}" alt="">
-      <p>+ 000 일째 콩닥콩닥</p>
-      <img src="{% static 'assets/images/heart.svg'%}" alt="">
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}" />
+<div class="grid-nav">
+  <div class="item1">
+    <img src="{% static 'assets/images/heart.svg'%}" alt="" />
+    <p>+ 000 일째 콩닥콩닥</p>
+    <img src="{% static 'assets/images/heart.svg'%}" alt="" />
+  </div>
+  <div class="item2">2024년 6월 26일</div>
+  <div class="item3">날씨</div>
+</div>
+<div class="campus-view">
+  <div class="select-view">
+    <div class="button-1">
+      <img src="{% static 'assets/images/circle.svg'%}" alt="" />
+      <a href="{% url 'secondpage_a' %}">a</a>
+    </div>
+    <div class="button-2">
+      <img src="{% static 'assets/images/circle.svg'%}" alt="" />
+      <a href="{% url 'secondpage_b' %}">b</a>
+    </div>
+    <div class="button-3">
+      <img src="{% static 'assets/images/circle.svg'%}" alt="" />
+      <a href="{% url 'secondpage_c' %}">c</a>
+    </div>
+  </div>
+</div>
+<div class="explain-view">
+  <div class="explain-item1">a</div>
+  <div class="explain-item2">사과/경영관, 혜화관, 대운동장, 학술문화관</div>
+  <div class="explain-item3">b</div>
+  <div class="explain-item4">
+    명진관, 법학관, 신공학관, 중앙도서관, 상록원, 팔정도
+  </div>
+  <div class="explain-item5">c</div>
+  <div class="explain-item6">
+    만해광장, 원흥관, 학림관, 정보문화관 P / Q, 학생회관
+  </div>
+</div>
+<div class="search-view">
+  <input type="text" placeholder="검색" />
 
+  <img class="search-img" src="{% static 'assets/images/search.svg'%}" alt="" />
+</div>
+<div class="info-view">
+  <div class="info-title">내 정보</div>
+  <div class="info-detail">
+    <p class="p-info">{{ user_profile.studentID }}</p>
+    <p class="p-info">{{ user_profile.nickname }}</p>
+    <p class="p-info">2024.03.02 입학</p>
+    <p class="p-info">{{user_post_count}}개</p>
+    <div><img src="{% static 'assets/images/elephant.svg'%}" alt="" /></div>
+  </div>
+</div>
+<div class="week-view">
+  <div class="week-title">주간 랭킹</div>
+  <div class="week-detail">
+    <div class="week-box">
+      <p>1위</p>
+      <p>000</p>
+      <p>100%</p>
     </div>
-    <div class="item2">2024년 6월 26일</div>
-    <div class="item3">날씨</div>
-  </div>
-  <div class="campus-view">
-    <div class="select-view">
-      <div class="button-1"><img src="{% static 'assets/images/circle.svg'%}" alt="">
-        <a href="{% url 'secondpage_a' %}">a</a>
-      </div>
-      <div class="button-2"><img src="{% static 'assets/images/circle.svg'%}" alt="">
-        <a href="{% url 'secondpage_b' %}">b</a>
-
-      </div>
-      <div class="button-3"><img src="{% static 'assets/images/circle.svg'%}" alt="">
-        <a href="{% url 'secondpage_c' %}">c</a>
-
-      </div>
+    <div class="week-box">
+      <p>2위</p>
+      <p>000</p>
+      <p>100%</p>
     </div>
-  </div>
-  <div class="explain-view">
-    <div class="explain-item1">a</div>
-    <div class="explain-item2">사과/경영관, 혜화관, 대운동장, 학술문화관</div>
-    <div class="explain-item3">b</div>
-    <div class="explain-item4">명진관, 법학관, 신공학관, 중앙도서관, 상록원, 팔정도</div>
-    <div class="explain-item5">c</div>
-    <div class="explain-item6">만해광장, 원흥관, 학림관, 정보문화관 P / Q, 학생회관</div>
-  </div>
-  <div class="search-view">
-    <input type="text" placeholder="검색">
-    <img class="search-img" src="{% static 'assets/images/search.svg'%}" alt="">
-  </div>
-  <div class="info-view">
-    <div class="info-title">내 정보</div>
-    <div class="info-detail">
-      <p class="p-info">{{ user_profile.studentID }}</p>
-      <p class="p-info">{{ user_profile.nickname }}</p>
-      <p class="p-info">2024.03.02 입학</p>
-      <p class="p-info">{{user_post_count}}개</p>
-      <div><img src="{% static 'assets/images/elephant.svg'%}" alt=""></div>
+    <div class="week-box">
+      <p>3위</p>
+      <p>000</p>
+      <p>100%</p>
     </div>
   </div>
-  <div class="week-view">
-    <div class="week-title">주간 랭킹</div>
-    <div class="week-detail">
-      <div class="week-box">
-        <p>1위</p>
-        <p>000</p>
-        <p>100%</p>
-      </div>
-      <div class="week-box">
-        <p>2위</p>
-        <p>000</p>
-        <p>100%</p>
-      </div>
-      <div class="week-box">
-        <p>3위</p>
-        <p>000</p>
-        <p>100%</p>
-      </div>
+</div>
+<div class="best-view">
+  <div class="best-title">최고의 순간들</div>
+  <div class="best-detail">
+    <div class="best-box">
+      <p>2024.05.01</p>
+      <p>심바톤 4조 체고</p>
+      <p>혜화관</p>
+    </div>
+    <div class="best-box">
+      <p>2024.05.01</p>
+      <p>심바톤 4조 체고</p>
+      <p>신공학관</p>
+    </div>
+    <div class="best-box">
+      <p>2024.05.01</p>
+      <p>심바톤 4조 체고</p>
+      <p>사과관</p>
     </div>
   </div>
-  <div class="best-view">
-    <div class="best-title">최고의 순간들</div>
-    <div class="best-detail">
-      <div class="best-box">
-        <p>2024.05.01</p>
-        <p>심바톤 4조 체고</p>
-        <p>혜화관</p>
-      </div>
-      <div class="best-box">
-        <p>2024.05.01</p>
-        <p>심바톤 4조 체고</p>
-        <p>신공학관</p>
-      </div>
-      <div class="best-box">
-        <p>2024.05.01</p>
-        <p>심바톤 4조 체고</p>
-        <p>사과관</p>
-      </div>
-    </div>
-  </div>
-  <div class="collection-view">
-    <p>모아보기</p>
-    <a href="{% url 'all_posts'%}">
-      <img src="{% static 'assets/images/arrow.svg'%}" alt="">
-    </a>
-  </div>
-  <div class="logout-view">
-    <a href="{% url 'logout' %}">로그아웃</a>
-  </div>
-  <div class="footer-view">
-    <p>Copyright ⓒ 2024. 동국대학교 멋쟁이사자처럼</p>
-    <p>심바톤 4조 All rights reserved.</p>
-  </div>
+</div>
+<div class="collection-view">
+  <p>모아보기</p>
+  <a href="{% url 'all_posts'%}">
+    <img src="{% static 'assets/images/arrow.svg'%}" alt="" />
+  </a>
+</div>
+<div class="logout-view">
+  <a href="{% url 'logout' %}">로그아웃</a>
+</div>
+<div class="footer-view">
+  <p>Copyright ⓒ 2024. 동국대학교 멋쟁이사자처럼</p>
+  <p>심바톤 4조 All rights reserved.</p>
+</div>
 {% endblock %}
