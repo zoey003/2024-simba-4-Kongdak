@@ -2,115 +2,186 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 90vh;
+  height: 85vh;
   background-image: url("../assets/images/diary.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
+  gap: 1rem;
 }
 
 .edit_frame1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 100px;
+  align-items: center;
+  margin-top: 1rem;
   width: 70%;
-  height: 40px;
+  height: 2.5rem;
   background: #fff;
-  color: #000;
-  text-align: center;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
+  font-size: 1rem;
   line-height: normal;
+}
+.edit_frame1 div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  padding: 0.5rem;
 }
 
 .edit_frame1 > div:nth-child(1) {
   width: 70%;
-  border: 1px solid #000;
-  padding: 8px;
 }
 
 .edit_frame1 > div:nth-child(2) {
   width: 30%;
-  border: 1px solid #000;
-  padding: 8px;
 }
 
 .edit_title {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 70%;
-  height: 40px;
-
+  height: 2.5rem;
   background: #fff;
-  color: #000;
-  text-align: center;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
+  font-size: 1rem;
   line-height: normal;
   border: 1px solid #000;
-  margin-top: 15px;
 }
 
+.edit_title div {
+  padding: 0.5rem;
+}
 #edit_textarea {
   width: 70%;
-  height: 300px;
+  height: 50%;
   border: 1px solid #000;
   background-color: #fff;
-  margin-top: 10px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: flex-start;
 }
-#edit_textarea::placeholder {
-  font-size: 16px;
+
+#edit_textarea div {
+  padding: 0.8rem;
 }
+
 .edit_frame2 {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 9px;
-  width: 70%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.edit_tag {
-  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  width: 60%;
-
-  border: 1px solid #000;
+  width: 70%;
+  height: 2.5rem;
   background: #fff;
-  padding: 6px 10px;
-  color: #000;
-  text-align: center;
-  font-size: 15px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  border: 1px solid #000;
+  gap: 1rem;
 }
-input {
+
+.edit_frame2 > div {
+  padding: 0.5rem;
+}
+.edit_frame3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   width: 70%;
-  border: none;
+  height: 3rem;
+  background: #fff;
+  font-size: 1rem;
+  line-height: normal;
+  position: relative;
+  gap: 1rem;
+}
+#back_edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 3;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: black;
+  color: white;
 }
 
 #edit_diary,
 #delete_diary {
+  flex: 0.4;
   padding: 0;
-  border: none;
+  border: solid 1px black;
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
+  box-sizing: border-box;
+  border-radius: 0.4rem;
+  margin: 0.3rem;
 }
 
-#edit_diary,
-#delete_diary svg {
-  border: 1px solid #000;
-  background: #fff;
-  padding: 3px;
-  width: 100%;
-  height: auto;
-  box-sizing: border-box; /* 패딩과 보더를 포함한 크기 계산 */
+.hidden-class {
+  display: none !important;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed; /* Stay in place */
+  top: 45%;
+  z-index: 1;
+  width: 15rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 100%;
+  display: grid;
+  grid-template-rows: repeat(1fr, 2);
+  grid-template-columns: repeat(1fr, 2);
+  row-gap: 0.3rem;
+}
+
+#delete-msg {
+  grid-row: 1/2;
+  grid-column: 1/3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#confirm-delete {
+  grid-row: 2/3;
+  grid-column: 1/2;
+  background: #000;
+  color: white;
+}
+
+#cancel-delete {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  background: #d9d9d9;
+}
+
+#confirm-delete,
+#cancel-delete {
+  padding: 0.4375rem 1.6875rem;
+  border-radius: 0.9375rem;
+  margin: 5px;
+}
+
+.blurred {
+  filter: blur(5px) !important;
+  pointer-events: none; /* Prevent interaction with blurred content */
 }

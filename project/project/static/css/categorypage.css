@@ -1,3 +1,8 @@
+#back {
+  visibility: hidden;
+  cursor: none;
+}
+
 .category-view {
   display: flex;
   flex-direction: column;
