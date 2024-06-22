@@ -23,8 +23,8 @@
       {% for post in posts %}
 
       <a
-        href="{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}"
-        class="search_list"
+      href="{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}?next={{ request.get_full_path }}"
+      class="search_list"
       >
         <div>{{post.created_at|date:"Y. m. d"}}</div>
         <div>{{post.title}}</div>
