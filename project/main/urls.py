@@ -22,3 +22,4 @@ urlpatterns = [
     path('search/tag/', views.search_by_tag, name='search_by_tag'),
     path('check_username/', views.check_username, name='check_username'),
     ]
+

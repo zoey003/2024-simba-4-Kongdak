@@ -269,10 +269,10 @@ def search_by_tag(request):
     }
     return render(request, 'main/search.html', context)
 
-
 def check_username(request):
     username = request.GET.get('username', None)
     data = {
         'is_taken': User.objects.filter(username=username).exists()
     }
     return JsonResponse(data)
+
