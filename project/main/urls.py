@@ -21,3 +21,4 @@ urlpatterns = [
     path('post/<int:post_id>/bookmark/', views.bookmark, name='bookmark'),
     path('search/tag/', views.search_by_tag, name='search_by_tag'),
 ]
+
