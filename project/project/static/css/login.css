@@ -9,7 +9,7 @@
 
 .login-main-img {
   width: 90%;
-  height: 70vh;
+  height: 75vh;
 }
 
 .title-view {
@@ -21,7 +21,7 @@
   align-items: center;
   flex-direction: column;
   top: 20vh;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .title-view p:nth-child(2) {
@@ -41,17 +41,18 @@
 }
 
 form {
-  width: 90%;
+  max-width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 #username,
 #password {
   width: 17rem;
+  height: 2.5rem;
   border: none;
   border-bottom: 2px dotted black;
 }
@@ -60,7 +61,7 @@ button {
   background-color: black;
   color: white;
   display: flex;
-  padding: 0.25rem 2.25rem;
+  padding: 0.45rem 2.25rem;
   border-radius: 0.3125rem;
   cursor: pointer;
 }
@@ -72,10 +73,10 @@ button p {
 
 .signup-view {
   margin: 1rem;
-  width: 90%;
+  max-width: 90%;
   position: absolute;
   z-index: 2;
-  bottom: 20vh;
+  bottom: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,4 +98,11 @@ button p {
 
 p {
   margin: 0;
+}
+
+#error {
+  display: flex;
+  align-self: flex-start;
+  visibility: hidden;
+  color: red;
 }
