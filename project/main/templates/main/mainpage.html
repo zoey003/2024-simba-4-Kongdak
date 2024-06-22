@@ -28,9 +28,15 @@
     </div>
   </div>
   <div class="explain-view">
-    <div class="explain-box"><div class="explain-item">a</div>사과/경영관, 혜화관, 대운동장, 학술문화관</div>
-    <div class="explain-box"><div class="explain-item">b</div>명진관, 법학관, 신공학관, 중앙도서관, 상록원, 팔정도</div>
-    <div class="explain-box"><div class="explain-item">c</div>만해광장, 원흥관, 학림관, 정보문화관 P / Q, 학생회관</div>
+    <div class="explain-box">
+      <div class="explain-item">a</div>사과/경영관, 혜화관, 대운동장, 학술문화관
+    </div>
+    <div class="explain-box">
+      <div class="explain-item">b</div>명진관, 법학관, 신공학관, 중앙도서관, 상록원, 팔정도
+    </div>
+    <div class="explain-box">
+      <div class="explain-item">c</div>만해광장, 원흥관, 학림관, 정보문화관 P / Q, 학생회관
+    </div>
   </div>
   <div class="search-view">
     <p>해시태그로 검색하기</p>
@@ -69,29 +75,12 @@
           <p>{{ post.title }}</p>
           <p>{{ post.subcategory }}</p>
         </div>
-        {% endfor %}
-      {% comment %} <div class="best-box">
-        <p>2024.05.01</p>
-        <p>심바톤 4조 체고</p>
-        <p>혜화관</p>
-      </div>
-      <div class="best-box">
-        <p>2024.05.01</p>
-        <p>심바톤 4조 체고</p>
-        <p>신공학관</p>
-      </div>
-      <div class="best-box">
-        <p>2024.05.01</p>
-        <p>심바톤 4조 체고</p>
-        <p>사과관</p>
-      </div> {% endcomment %}
+      {% endfor %}
     </div>
   </div>
   <div class="collection-view">
     <p>모아보기</p>
-    <a href="{% url 'all_posts'%}">
-      <img src="{% static 'assets/images/arrow.svg'%}" alt=""/>
-    </a>
+    <img src="{% static 'assets/images/arrow.svg'%}" alt=""/>
   </div>
   <div class="logout-view">
     <button>로그아웃</button>
@@ -110,6 +99,7 @@
   <script>
     const logoutUrl = "{% url 'logout' %}"
     const searchUrl = "{% url 'search_by_tag' %}"
+    const allPostUrl = "{% url 'all_posts'%}"
   </script>
   <script src="{% static "js/main.js" %}"></script>
 {% endblock %}
