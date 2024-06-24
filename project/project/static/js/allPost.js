@@ -1,3 +1,5 @@
+allPost.js
+
 document.addEventListener("DOMContentLoaded", function () {
   const heartButtons = document.querySelectorAll(".heart-btn");
   const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
