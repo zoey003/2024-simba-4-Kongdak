@@ -71,7 +71,7 @@
     <div class="best-title">최고의 순간들</div>
     <div class="best-detail">
       {% for post in bookmarked_posts %}
-        <a href="{% url 'post_detail' post.category post.subcategory post.id %}" class="best-box">
+        <a href="{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}?next={% url 'mainpage' %}" class="best-box">
           <p>{{ post.created_at|date:"Y.m.d" }}</p>
           <p>{{ post.title }}</p>
           <p>{{ post.subcategory }}</p>
