@@ -8,9 +8,10 @@ from django.db.models import Count
 from django.http import JsonResponse
 from datetime import datetime, timedelta
 from .utils import get_weather
-
-
-
+from django.utils import timezone
+from django.template.loader import render_to_string
+from django.utils.timezone import now
+from django.http import HttpResponse
 
 def firstpage(request):
     return render(request, 'main/firstpage.html')
@@ -281,7 +282,7 @@ def search_by_tag(request):
         # 태그에서 띄어쓰기 제거
         query = query.replace(' ', '')
         tags = [tag.strip() for tag in query.split('#') if tag.strip()]
-        posts = Post.objects.filter(author=request.user, tags__name__in=tags).distinct()
+        posts = Post.objects.filter(tags__name__in=tags).distinct()
     else:
         posts = Post.objects.none()
 
@@ -303,3 +304,22 @@ def check_username(request):
         return JsonResponse(response)
     return JsonResponse({'error': '잘못된 요청입니다.'}, status=400)
 
+def filter_by_date(request):
+    if request.method == 'GET':
+        current_year = now().year
+        
+        year_range = range(2024, current_year + 1)
+
+        year_selected = int(request.GET.get('year', now().year))
+        month_selected = int(request.GET.get('month', now().month))
+
+        posts = Post.objects.filter(
+            author=request.user,
+            created_at__year=year_selected,
+            created_at__month=month_selected
+        )
+
+        html_content = render_to_string('main/all_posts.html', {'posts': posts, 'year_range': year_range, 'year_selected': year_selected, 'month_selected': month_selected})
+        return HttpResponse(html_content)
+    else:
+        return redirect('all_posts')
