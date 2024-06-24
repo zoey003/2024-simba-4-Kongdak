@@ -19,25 +19,25 @@
     <div>검색결과</div>
     <p id="search_line"></p>
     <div class="search_frame1">
-      <div id="search_none">검색결과가 없습니다.</div>
-      {% for post in posts %}
-
-      <a
-      href="{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}?next={{ request.get_full_path }}"
-      class="search_list"
-      >
-        <div>{{post.created_at|date:"Y. m. d"}}</div>
-        <div>{{post.title}}</div>
-        <div class="search_place" data-category="{{ post.category }}">
-          {{post.subcategory}}
-        </div>
-      </a>
-      {% endfor%}
+        {% if posts %}
+            {% for post in posts %}
+                {% if post.author == request.user %}
+                    <a href="{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}?next={{ request.get_full_path }}" class="search_list">
+                        <div>{{ post.created_at|date:"Y. m. d" }}</div>
+                        <div>{{ post.title }}</div>
+                        <div class="search_place" data-category="{{ post.category }}">
+                            {{ post.subcategory }}
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div id="search_none">검색결과가 없습니다.</div>
+        {% endif %}
     </div>
-  </div>
 </div>
 <script>
-  const searchUrl = "{% url 'search_by_tag' %}";
+    const searchUrl = "{% url 'search_by_tag' %}";
 </script>
 <script src="{% static 'js/search.js' %}"></script>
 {% endblock %}

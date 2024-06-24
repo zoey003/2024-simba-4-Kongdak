@@ -281,7 +281,7 @@ def search_by_tag(request):
         # 태그에서 띄어쓰기 제거
         query = query.replace(' ', '')
         tags = [tag.strip() for tag in query.split('#') if tag.strip()]
-        posts = Post.objects.filter(tags__name__in=tags).distinct()
+        posts = Post.objects.filter(author=request.user, tags__name__in=tags).distinct()
     else:
         posts = Post.objects.none()
 
