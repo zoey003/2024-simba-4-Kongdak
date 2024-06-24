@@ -1,39 +1,41 @@
-{% extends 'base.html' %} {% block content %} {% include 'shared/_topnav.html'%}
-{% load static %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/category_b.css'%}"
-/>
+{% extends 'base.html' %}
+{% block content %}
+  {% include 'shared/_topnav.html'%}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/category_b.css'%}"/>
 
-<div class="grid-b-campus">
-  <div class="campus-view-b">
-    <div class="grid_b">
-      <a href="{% url 'categorypage' 'b' '상록원' %}" class="button-1">
-        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-        <p>상록원</p>
-      </a>
-      <a href="{% url 'categorypage' 'b' '신공학관' %}" class="button-2">
-        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-        <p>신공학관</p>
-      </a>
-      <a href="{% url 'categorypage' 'b' '명진관' %}" class="button-3">
-        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-        <p>명진관</p>
-      </a>
-      <a href="{% url 'categorypage' 'b' '중앙도서관' %}" class="button-4">
-        <img src="{% static 'assets/images/placeframe_long.svg'%}" alt="" />
-        <p>중앙도서관</p>
-      </a>
-      <a href="{% url 'categorypage' 'b' '팔정도' %}" class="button-5">
-        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-        <p>팔정도</p>
-      </a>
-      <a href="{% url 'categorypage' 'b' '법학관' %}" class="button-6">
-        <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-        <p>법학관</p>
-      </a>
+  <div class="grid-b-campus">
+    <div class="campus-view-b">
+      <div class="grid_b">
+        <a href="{% url 'categorypage' 'b' '상록원' %}" class="button-1">
+          <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+          <p>상록원</p>
+        </a>
+        <a href="{% url 'categorypage' 'b' '신공학관' %}" class="button-2">
+          <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+          <p>신공학관</p>
+        </a>
+        <a href="{% url 'categorypage' 'b' '명진관' %}" class="button-3">
+          <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+          <p>명진관</p>
+        </a>
+        <a href="{% url 'categorypage' 'b' '중앙도서관' %}" class="button-4">
+          <img src="{% static 'assets/images/placeframe_long.svg'%}" alt=""/>
+          <p>중앙도서관</p>
+        </a>
+        <a href="{% url 'categorypage' 'b' '팔정도' %}" class="button-5">
+          <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+          <p>팔정도</p>
+        </a>
+        <a href="{% url 'categorypage' 'b' '법학관' %}" class="button-6">
+          <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+          <p>법학관</p>
+        </a>
+      </div>
     </div>
   </div>
-</div>
+  <script>
+    const urlCase = "/mainpage";
+  </script>
+  <script src="{% static "js/backControl.js" %}"></script>
 {% endblock %}

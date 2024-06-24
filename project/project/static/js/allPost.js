@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   const heartButtons = document.querySelectorAll(".heart-btn");
   const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+  const backBtn = document.querySelector("#back");
+
+  backBtn.addEventListener("click", () => {
+    window.location.href = "/mainpage";
+  });
 
   heartButtons.forEach((heartBtn) => {
     const heartImg = heartBtn.querySelector("img");

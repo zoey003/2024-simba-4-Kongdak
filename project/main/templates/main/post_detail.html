@@ -30,7 +30,6 @@
 
     <div class="edit_frame3">
       <div id="back_edit">뒤로가기</div>
-
       <button id="edit_diary">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewbox="0 0 32 32" fill="none">
           <path d="M28.7332 2.1582L27.8417 1.2662C27.0303 0.455432 25.9302 0 24.7832 0C23.6362 0 22.5361 0.455432 21.7247 1.2662L3.70969 19.2822L0.139188 28.6182C-0.279812 29.7232 0.279688 30.2797 1.38119 29.8587L10.7187 26.2917L28.7332 8.2752C30.4237 6.5872 30.4217 3.8487 28.7332 2.1582ZM17.4187 6.9012L18.6727 8.1547L6.29069 20.5377L5.03669 19.2832L17.4187 6.9012ZM19.3357 8.8182L21.1832 10.6662L8.80169 23.0487L6.95419 21.2012L19.3357 8.8182ZM4.51319 27.6597L2.34219 25.4867L4.44269 20.0162L9.98219 25.5547L4.51319 27.6597ZM10.7187 24.9662L9.46569 23.7117L21.8467 11.3292L23.1007 12.5837L10.7187 24.9662ZM23.8232 11.8612L18.1407 6.1797L19.5542 4.7657L25.2367 10.4472L23.8232 11.8612Z" fill="black"/>
@@ -61,7 +60,20 @@
     const cloudUrl = '{% static "assets/images/cloud.png" %}';
     const umbrellaUrl = '{% static "assets/images/umbrella.png" %}';
     const snowyUrl = '{% static "assets/images/snowy.png" %}';
+    const urlCase = "detail"
+    const now = window.location.href;
+    const urlNow = new URL(now);
+    const nextParam = new URLSearchParams(urlNow.search).get("next");
+
+    if (nextParam) {
+      const nextUrl = new URL(decodeURIComponent(nextParam), window.location.origin);
+      const qParam = new URLSearchParams(nextUrl.search).get("q");
+      localStorage.setItem("detailBack", decodeURIComponent(nextParam));
+
+    }
   </script>
   <script src="{% static 'js/postDetail.js' %}"></script>
   <script src="{% static 'js/weather.js' %}"></script>
+  <script src="{% static 'js/backControl.js' %}"></script>
+
 {% endblock %}
