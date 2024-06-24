@@ -8,8 +8,8 @@
     <div id="today">오늘의 일기</div>
     <div class="diary_frame1">
       <div id="today-zone"></div>
-      <div>날씨:
-        {{weather_main}}</div>
+      <div id="weather-zone" weather-data="{{weather_main}}">날씨:
+        <img id="weather-img" src="" alt="날씨"></div>
     </div>
     <form id="create_form" action="" method="post">
       {% csrf_token %}
@@ -24,5 +24,14 @@
       <button type="submit" class="disabled-btn" id="diary_save" disabled="disabled">저장</button>
     </form>
   </div>
+  <script>
+    const sunnyUrl = '{% static "assets/images/sunny.png" %}';
+    const cloudyUrl = '{% static "assets/images/cloudy.png" %}';
+    const umbrellaUrl = '{% static "assets/images/umbrella.png" %}';
+    const snowyUrl = '{% static "assets/images/snowy.png" %}';
+    const urlCase = "back";
+  </script>
   <script src="{% static "js/createPost.js" %}"></script>
+  <script src="{% static "js/weather.js" %}"></script>
+  <script src="{% static "js/backControl.js" %}"></script>
 {% endblock %}

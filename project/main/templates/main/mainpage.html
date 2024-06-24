@@ -9,8 +9,8 @@
       <img src="{% static 'assets/images/heart.svg'%}" alt=""/>
     </div>
     <div id="today-view" class="item2"></div>
-    <div class="item3">날씨 :
-      {{weather_main}}</div>
+    <div class="item3" id="weather-zone" weather-data="{{weather_main}}">날씨 :
+      <img id="weather-img" src="" alt="날씨"></div>
   </div>
   <div class="campus-view">
     <div class="select-view">
@@ -101,6 +101,12 @@
     const logoutUrl = "{% url 'logout' %}"
     const searchUrl = "{% url 'search_by_tag' %}"
     const allPostUrl = "{% url 'all_posts'%}"
+    const sunnyUrl = '{% static "assets/images/sunny.png" %}';
+    const cloudyUrl = '{% static "assets/images/cloudy.png" %}';
+    const cloudUrl = '{% static "assets/images/cloud.png" %}';
+    const umbrellaUrl = '{% static "assets/images/umbrella.png" %}';
+    const snowyUrl = '{% static "assets/images/snowy.png" %}';
   </script>
   <script src="{% static "js/main.js" %}"></script>
+  <script src="{% static "js/weather.js" %}"></script>
 {% endblock %}

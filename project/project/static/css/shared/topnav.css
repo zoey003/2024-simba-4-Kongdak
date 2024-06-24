@@ -35,8 +35,9 @@
   justify-content: center;
 }
 
-p {
+.top-nav p {
   margin: 0;
+  font-size: 1.2rem;
 }
 
 #back,

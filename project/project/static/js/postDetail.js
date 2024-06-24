@@ -1,7 +1,8 @@
 const back = document.getElementById("back_edit");
 
 back.addEventListener("click", () => {
-  window.history.back();
+  window.location.href = localStorage.getItem("detailBack");
+  console.log("c,ci");
 });
 const editBtn = document.getElementById("edit_diary");
 const deleteBtn = document.getElementById("delete_diary");

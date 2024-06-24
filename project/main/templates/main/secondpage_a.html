@@ -1,29 +1,31 @@
-{% extends 'base.html' %} {% block content %} {% include 'shared/_topnav.html'%}
-{% load static %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'css/category_a.css'%}"
-/>
+{% extends 'base.html' %}
+{% block content %}
+  {% include 'shared/_topnav.html'%}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/category_a.css'%}"/>
 
-<div class="grid-a-campus">
-  <div class="campus-view-a">
-    <a href="{% url 'categorypage' 'a' '사과·경영관' %}" class="button-1">
-      <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-      <p class="a_p">사과/경영관</p>
-    </a>
-    <a href="{% url 'categorypage' 'a' '대운동장' %}" class="button-2">
-      <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-      <p class="a_p">대운동장</p>
-    </a>
-    <a href="{% url 'categorypage' 'a' '학술문화관' %}" class="button-3">
-      <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-      <p class="a_p">학술문화관</p>
-    </a>
-    <a href="{% url 'categorypage' 'a' '혜화관' %}" class="button-4">
-      <img src="{% static 'assets/images/placeframe.svg'%}" alt="" />
-      <p class="a_p">혜화관</p>
-    </a>
+  <div class="grid-a-campus">
+    <div class="campus-view-a">
+      <a href="{% url 'categorypage' 'a' '사과·경영관' %}" class="button-1">
+        <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+        <p class="a_p">사과/경영관</p>
+      </a>
+      <a href="{% url 'categorypage' 'a' '대운동장' %}" class="button-2">
+        <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+        <p class="a_p">대운동장</p>
+      </a>
+      <a href="{% url 'categorypage' 'a' '학술문화관' %}" class="button-3">
+        <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+        <p class="a_p">학술문화관</p>
+      </a>
+      <a href="{% url 'categorypage' 'a' '혜화관' %}" class="button-4">
+        <img src="{% static 'assets/images/placeframe.svg'%}" alt=""/>
+        <p class="a_p">혜화관</p>
+      </a>
+    </div>
   </div>
-</div>
+  <script>
+    const urlCase = "/mainpage";
+  </script>
+  <script src="{% static "js/backControl.js" %}"></script>
 {% endblock %}
