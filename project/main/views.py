@@ -252,22 +252,42 @@ def post_detail(request, category, subcategory, post_id):
     post = get_object_or_404(Post, id=post_id, category=category, subcategory=subcategory)
     return render(request, 'main/post_detail.html', {'post': post, 'next': request.GET.get('next')})
 
+
 @login_required
 def all_posts(request):
-    posts = Post.objects.filter(author=request.user)
-    bookmarked_posts = request.user.bookmark.all()
+    start_year_selected = int(request.GET.get('start_year', 2024))
+    end_year_selected = int(request.GET.get('end_year', 2024))
+    start_month_selected = int(request.GET.get('start_month', 1))
+    end_month_selected = int(request.GET.get('end_month', 12))
 
+    if request.method == 'GET' and (start_year_selected and end_year_selected and start_month_selected and end_month_selected):
+        posts = Post.objects.filter(
+            author=request.user,
+            created_at__year__gte=start_year_selected,
+            created_at__year__lte=end_year_selected,
+            created_at__month__gte=start_month_selected,
+            created_at__month__lte=end_month_selected
+        ).order_by('-created_at')
+    else:
+        posts = Post.objects.filter(author=request.user).order_by('-created_at') 
+
+    bookmarked_posts = request.user.bookmark.all()
+    
     for post in posts:
         post.is_bookmarked = post in bookmarked_posts
 
     return render(request, 'main/all_posts.html', {
-        'posts': posts, 
-        'bookmarked_posts': bookmarked_posts, 
-        'year_range': range(2024, now().year + 1), 
-        'year_selected': None, 
-        'start_month_selected': None, 
-        'end_month_selected': None
-    })    
+        'posts': posts,
+        'bookmarked_posts': bookmarked_posts,
+        'year_range': range(2024, now().year + 1),
+        'months': range(1, 13),
+        'start_year_selected': start_year_selected,
+        'end_year_selected': end_year_selected,
+        'start_month_selected': start_month_selected,
+        'end_month_selected': end_month_selected
+    })
+
+
 
 @login_required
 def bookmark(request, post_id):
@@ -317,26 +337,38 @@ def check_username(request):
     return JsonResponse({'error': '잘못된 요청입니다.'}, status=400)
 
 
-def filter_by_date(request):
-    if request.method == 'GET':
-        current_year = now().year
-        year_selected = int(request.GET.get('year', now().year))
-        start_month_selected = int(request.GET.get('start_month', 1))
-        end_month_selected = int(request.GET.get('end_month', 12))
+# def filter_by_date(request):
+#     if request.method == 'GET':
+#         start_year_selected = int(request.GET.get('start_year', 2024))
+#         end_year_selected = int(request.GET.get('end_year', 2024))
+#         start_month_selected = int(request.GET.get('start_month', 1))
+#         end_month_selected = int(request.GET.get('end_month', 12))
 
-        posts = Post.objects.filter(
-            author=request.user,
-            created_at__year=year_selected,
-            created_at__month__gte=start_month_selected,
-            created_at__month__lte=end_month_selected
-        )
+#         posts = Post.objects.filter(
+#             author=request.user,
+#             created_at__year__gte=start_year_selected,
+#             created_at__year__lte=end_year_selected,
+#             created_at__month__gte=start_month_selected,
+#             created_at__month__lte=end_month_selected
+#         ).order_by('-created_at') 
+#         bookmarked_posts = request.user.bookmark.all()
+        
+#         for post in posts:
+#             post.is_bookmarked = post in bookmarked_posts
 
-        html_content = render_to_string('main/all_posts.html', {
-            'posts': posts,
-            'year_selected': year_selected,
-            'start_month_selected': start_month_selected,
-            'end_month_selected': end_month_selected
-        })
-        return HttpResponse(html_content)
-    else:
-        return redirect('all_posts')
+        
+
+#         html_content = render_to_string('main/all_posts.html', {
+#             'posts': posts,
+#             'start_year_selected': start_year_selected,
+#             'end_year_selected': end_year_selected,
+#             'start_month_selected': start_month_selected,
+#             'end_month_selected': end_month_selected
+#         })
+        
+#         return HttpResponse(html_content)
+#     else:
+#         return redirect('all_posts')
+    
+
+ 

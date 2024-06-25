@@ -1,67 +1,102 @@
-
 {% extends 'base.html' %}
 {% block content %}
   {% include 'shared/_topnav.html'%}
   {% load static %}
 
-
-
   <link rel="stylesheet" type="text/css" href="{% static 'css/all_posts.css' %}"/>
   <div class="posts-container"> 
-    <div id="allview">모아보기</div>
-    <p class="all_line"></p>
-<form name="select-form" action="{% url 'filter_by_date' %}" method="get" id="select-form">
-  {% csrf_token %}
-   <div class="select-date" >
-    <select name="year" id="select-year">
-      <option value="2024" {% if month_selected == 2024 %}selected{% endif %}>2024년</option>
-    </select>
-    <select name="month" id="select-month">
-      <!-- <option value="" {% if not month_selected %}selected{% endif %}>전체보기</option> -->
-      <option value="1" {% if month_selected == 1 %}selected{% endif %}>1월</option>
-      <option value="2" {% if month_selected == 2 %}selected{% endif %}>2월</option>
-      <option value="3" {% if month_selected == 3 %}selected{% endif %}>3월</option>
-      <option value="4" {% if month_selected == 4 %}selected{% endif %}>4월</option>
-      <option value="5" {% if month_selected == 5 %}selected{% endif %}>5월</option>
-      <option value="6" {% if month_selected == 6 %}selected{% endif %}>6월</option>
-      <option value="7" {% if month_selected == 7 %}selected{% endif %}>7월</option>
-      <option value="8" {% if month_selected == 8 %}selected{% endif %}>8월</option>
-      <option value="9" {% if month_selected == 9 %}selected{% endif %}>9월</option>
-      <option value="10" {% if month_selected == 10 %}selected{% endif %}>10월</option>
-      <option value="11" {% if month_selected == 11 %}selected{% endif %}>11월</option>
-      <option value="12" {% if month_selected == 12 %}selected{% endif %}>12월</option>
-    </select>
-    <button type="submit"><img src="{%static 'assets/images/search.svg'%}" id=""></button>
-  </div>
-
-</form>
-<p class="all_line"></p>
-<div id="post_none" {% if posts %}style="display: none;"{% endif %}>작성한 글이 없습니다.</div>
-
-    {% csrf_token %}
+    <p id="all_line"></p>
+    <form name="select-form" action="{% url 'all_posts' %}" method="get" id="select-form">
+      {% csrf_token %}
+      <div class="select-date">
+        <select name="start_year" id="select-start-year">
+          <option value="2023" {% if start_year_selected == 2023 %}selected{% endif %}>2023년</option>
+          <option value="2024" {% if start_year_selected == 2024 %}selected{% endif %}>2024년</option>
+        </select>
+        <select name="start_month" id="select-start-month">
+          <option value="1" {% if start_month_selected == 1 %}selected{% endif %}>1월</option>
+          <option value="2" {% if start_month_selected == 2 %}selected{% endif %}>2월</option>
+          <option value="3" {% if start_month_selected == 3 %}selected{% endif %}>3월</option>
+          <option value="4" {% if start_month_selected == 4 %}selected{% endif %}>4월</option>
+          <option value="5" {% if start_month_selected == 5 %}selected{% endif %}>5월</option>
+          <option value="6" {% if start_month_selected == 6 %}selected{% endif %}>6월</option>
+          <option value="7" {% if start_month_selected == 7 %}selected{% endif %}>7월</option>
+          <option value="8" {% if start_month_selected == 8 %}selected{% endif %}>8월</option>
+          <option value="9" {% if start_month_selected == 9 %}selected{% endif %}>9월</option>
+          <option value="10" {% if start_month_selected == 10 %}selected{% endif %}>10월</option>
+          <option value="11" {% if start_month_selected == 11 %}selected{% endif %}>11월</option>
+          <option value="12" {% if start_month_selected == 12 %}selected{% endif %}>12월</option>
+        </select>
+        <select name="end_year" id="select-end-year">
+          <option value="2023" {% if end_year_selected == 2023 %}selected{% endif %}>2023년</option>
+          <option value="2024" {% if end_year_selected == 2024 %}selected{% endif %}>2024년</option>
+        </select>
+        <select name="end_month" id="select-end-month">
+          <option value="1" {% if end_month_selected == 1 %}selected{% endif %}>1월</option>
+          <option value="2" {% if end_month_selected == 2 %}selected{% endif %}>2월</option>
+          <option value="3" {% if end_month_selected == 3 %}selected{% endif %}>3월</option>
+          <option value="4" {% if end_month_selected == 4 %}selected{% endif %}>4월</option>
+          <option value="5" {% if end_month_selected == 5 %}selected{% endif %}>5월</option>
+          <option value="6" {% if end_month_selected == 6 %}selected{% endif %}>6월</option>
+          <option value="7" {% if end_month_selected == 7 %}selected{% endif %}>7월</option>
+          <option value="8" {% if end_month_selected == 8 %}selected{% endif %}>8월</option>
+          <option value="9" {% if end_month_selected == 9 %}selected{% endif %}>9월</option>
+          <option value="10" {% if end_month_selected == 10 %}selected{% endif %}>10월</option>
+          <option value="11" {% if end_month_selected == 11 %}selected{% endif %}>11월</option>
+          <option value="12" {% if end_month_selected == 12 %}selected{% endif %}>12월</option>
+        </select>
+        <button type="submit"><img src="{% static 'assets/images/search.svg' %}" id=""></button>
+        <button type="button" id="reset-button">Reset</button>
+      </div>
+    </form>
+    <div id="post_none" {% if posts %}style="display: none;"{% endif %}>작성한 글이 없습니다.</div>
     {% for post in posts %}
       <div class="post-view">
-       
         <a href="{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}?next={% url 'all_posts' %}" class="post-item">
           <div>{{ post.created_at|date:"Y.m.d" }}</div>
           <div>{{ post.title }}</div>
           <div class="place" data-category="{{ post.category }}">{{ post.subcategory }}</div>
         </a>
         <button class="heart-btn" data="{{ post.id }}">
-          <img src="{% static 'assets/images/heartRed.svg' if post.is_bookmarked else 'assets/images/heartWhite.svg' %}" alt="" data-is_bookmarked="{{ post.is_bookmarked }}">
+          <img src="{% if post.is_bookmarked %}{% static 'assets/images/heartRed.svg' %}{% else %}{% static 'assets/images/heartWhite.svg' %}{% endif %}" alt="" data-is_bookmarked="{{ post.is_bookmarked }}">
         </button>
       </div>
     {% endfor %}
-
   </div>
   <script>
     const redHeartUrl = '{% static "assets/images/heartRed.svg" %}';
     const whiteHeartUrl = '{% static "assets/images/heartWhite.svg" %}';
-    const urlCase = "/mainpage";
+    const postFrames = document.querySelectorAll(".place");
 
+    postFrames.forEach((frame) => {
+      const category = frame.getAttribute("data-category");
 
+      switch (category) {
+        case "a":
+          frame.style.backgroundColor = "#FE8535";
+          frame.style.color = "white";
+          break;
+        case "b":
+          frame.style.backgroundColor = "#D9D9D9";
+          frame.style.color = "black";
+          break;
+        case "c":
+          frame.style.backgroundColor = "white";
+          frame.style.color = "black";
+          frame.style.border = "solid 1px black";
+          break;
+      }
+
+      const categoryDiv = frame.querySelector(".place");
+      if (categoryDiv) {
+        categoryDiv.style.display = "none";
+      }
+    });
+
+    document.getElementById('reset-button').addEventListener('click', function() {
+      window.location.href = "{% url 'all_posts' %}";
+    });
   </script>
   <script src="{% static 'js/allPost.js' %}"></script>
-  <script src="{% static 'js/placeFrame.js' %}"></script>
-  <script src="{% static "js/backControl.js" %}"></script>
+
 {% endblock %}
