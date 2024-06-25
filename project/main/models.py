@@ -8,19 +8,13 @@ class Tag(models.Model):
         return self.name
 
 class Post(models.Model):
-    WEATHER_CHOICES = [
-        ('sunny', '맑음'),
-        ('cloudy', '흐림'),
-        ('rainy', '비'),
-        ('snowy', '눈'),
-    ]
     title = models.CharField(max_length=200)
     content = models.TextField()
     category = models.CharField(max_length=50)
     subcategory = models.CharField(max_length=50)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    weather = models.CharField(max_length=10, choices=WEATHER_CHOICES, default='sunny')
+    weather = models.CharField(max_length=10)
     tags = models.ManyToManyField(Tag, related_name='posts', blank=True)
     bookmark = models.ManyToManyField(User, related_name='bookmark', blank=True)
 

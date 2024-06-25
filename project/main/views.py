@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth.models import User
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .models import Post, Profile , Tag
 from django.db.models import Count
+from django.contrib import messages
 from django.http import JsonResponse
 from datetime import datetime, timedelta
 from .utils import get_weather
@@ -59,10 +59,12 @@ def mainpage(request):
     # 현재 로그인된 사용자의 프로필 정보 가져오기
     user_profile = get_object_or_404(Profile, user=request.user)
 
-    # 모든 작성자와 그들의 게시물 수를 가져오기
+    ''' 
+    # 상위 3명
     top_authors = Post.objects.values('author__username')\
         .annotate(post_count=Count('author'))\
         .order_by('-post_count')[:3]
+    '''
 
     # 현재 사용자가 작성한 게시물 수
     user_post_count = Post.objects.filter(author=request.user).count()
@@ -81,12 +83,12 @@ def mainpage(request):
 
     # 날씨 정보 가져오기
     weather_main = get_weather()
+    #좋아요 
     bookmarked_posts = request.user.bookmark.all()
 
     context = {
         'user': request.user,
         'user_profile': user_profile,
-        'top_authors': top_authors,  # 상위 3명의 작성자와 그들의 게시물 수
         'user_post_count': user_post_count,  # 현재 사용자가 작성한 게시물 수
         'days_since_joined': days_since_joined,  # 가입일로부터 경과한 일수
         'weekly_top_authors': weekly_top_authors,  # 주간 랭킹 상위 3명
