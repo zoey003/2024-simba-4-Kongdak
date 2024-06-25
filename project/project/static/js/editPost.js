@@ -5,11 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const saveButton = document.querySelector("#diary_save");
 
   // 제목과 내용 검증 정규 표현식
-  const titleRegex =
-    /^[A-Za-z가-힣ㄱ-ㅎㅏ-ㅣ0-9!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/\s]{1,8}$/;
-
-  const contentRegex =
-    /^[A-Za-z가-힣ㄱ-ㅎㅏ-ㅣ0-9!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/\s]{1,}$/;
+  const titleRegex = /^[\s\S]{1,8}$/;
+  const contentRegex = /^[\s\S]{1,}$/;
   const tagRegex = /^#.+/;
 
   // 한글 입력 상태 확인 변수

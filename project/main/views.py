@@ -245,37 +245,35 @@ def post_detail(request, category, subcategory, post_id):
 
 @login_required
 def all_posts(request):
-    start_year_selected = int(request.GET.get('start_year', 2024))
-    end_year_selected = int(request.GET.get('end_year', 2024))
-    start_month_selected = int(request.GET.get('start_month', 1))
-    end_month_selected = int(request.GET.get('end_month', 12))
+    start_year_selected = request.GET.get('start_year')
+    end_year_selected = request.GET.get('end_year')
+    start_month_selected = request.GET.get('start_month')
+    end_month_selected = request.GET.get('end_month')
 
-    if request.method == 'GET' and (start_year_selected and end_year_selected and start_month_selected and end_month_selected):
-        posts = Post.objects.filter(
-            author=request.user,
-            created_at__year__gte=start_year_selected,
-            created_at__year__lte=end_year_selected,
-            created_at__month__gte=start_month_selected,
-            created_at__month__lte=end_month_selected
-        ).order_by('-created_at')
-    else:
-        posts = Post.objects.filter(author=request.user).order_by('-created_at') 
+    filters = {}
+    if start_year_selected and end_year_selected and start_month_selected and end_month_selected:
+        filters['created_at__year__gte'] = int(start_year_selected)
+        filters['created_at__year__lte'] = int(end_year_selected)
+        filters['created_at__month__gte'] = int(start_month_selected)
+        filters['created_at__month__lte'] = int(end_month_selected)
 
+    posts = Post.objects.filter(author=request.user, **filters).order_by('-created_at') 
     bookmarked_posts = request.user.bookmark.all()
-    
+
     for post in posts:
         post.is_bookmarked = post in bookmarked_posts
 
-    return render(request, 'main/all_posts.html', {
-        'posts': posts,
-        'bookmarked_posts': bookmarked_posts,
-        'year_range': range(2024, now().year + 1),
-        'months': range(1, 13),
-        'start_year_selected': start_year_selected,
-        'end_year_selected': end_year_selected,
-        'start_month_selected': start_month_selected,
-        'end_month_selected': end_month_selected
-    })
+    context = {
+        'posts': posts, 
+        'bookmarked_posts': bookmarked_posts, 
+        'year_range': range(2023, 2025), 
+        'start_year_selected': int(start_year_selected) if start_year_selected else None, 
+        'end_year_selected': int(end_year_selected) if end_year_selected else None, 
+        'start_month_selected': int(start_month_selected) if start_month_selected else None, 
+        'end_month_selected': int(end_month_selected) if end_month_selected else None,
+    }
+    
+    return render(request, 'main/all_posts.html', context)
 
 
 
