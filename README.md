@@ -174,89 +174,87 @@ python manage.py runserver
 ├── LICENSE
 ├── .gitignore
 ├── project
-    ├── .gitignore
-    ├── db.sqlite3
-    ├── manage.py
-    ├── Pipfile
-    ├── project
-        ├── __init__.py
-        ├── asgi.py
-        ├── settings.py
-        ├── urls.py
-        ├── wsgi.py
-        ├── static
-            ├── assets
-                ├── font
-                    ├── Sagak-sagak.ttf
-                    ├── Human-beomseok.ttf
-                ├── images
-                    ├── a_screen.svg
-                    ├── arrow.svg
-                    ├── b_screen.svg
-                    ├── ...
-            ├── css
-                ├── base
-                    ├── index.css
-                    ├── reset.css
-                ├── shared
-                    ├── topnav.css
-                ├── all_posts.css
-                ├── category_a.css
-                ├── category_b.css
-                ├── category_c.css
-                ├── categorypage.css
-                ├── create_post.css
-                ├── edit.css
-                ├── login.css
-                ├── main.css
-                ├── post_detail.css
-                ├── search.css
-                ├── signup_done.css
-                ├── signup.css
-            ├── js
-                ├── allPost.js
-                ├── backControl.js
-                ├── category.js
-                ├── createPost.js
-                ├── editPost.js
-                ├── login.js
-                ├── main.js
-                ├── placeFrame.js
-                ├── postDetail.js
-                ├── search.js
-                ├── signup.js
-                ├── topnav.js
-                ├── weather.js
-        ├── templates
-            ├── shared
-                ├── _topnav.html
-            ├── base.html
-    └── main
-        ├── __init__.py
-        ├── admin.py
-        ├── apps.py
-        ├── forms.py
-        ├── models.py
-        ├── tests.py
-        ├── urls.py
-        ├── utils.py
-        ├── views.py
-        ├── templates
-            ├── all_posts.html
-            ├── cateogrypage.html
-            ├── create_post.html
-            ├── edit_post.html
-            ├── firstpage.html
-            ├── mainpage.html
-            ├── post_detail.html
-            ├── search.html
-            ├── secondpage_a.html
-            ├── secondpage_b.html
-            ├── secondpage_c.html
-            ├── signup_done.html
-            ├── signup.html
-
-
+│   ├── .gitignore
+│   ├── db.sqlite3
+│   ├── manage.py
+│   ├── Pipfile
+│   ├── project
+│   │   ├── __init__.py
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │   ├── static
+│   │   │   ├── assets
+│   │   │   │   ├── font
+│   │   │   │   │   ├── Sagak-sagak.ttf
+│   │   │   │   │   ├── Human-beomseok.ttf
+│   │   │   │   ├── images
+│   │   │   │   │   ├── a_screen.svg
+│   │   │   │   │   ├── arrow.svg
+│   │   │   │   │   ├── b_screen.svg
+│   │   │   │   │   ├── ...
+│   │   │   ├── css
+│   │   │   │   ├── base
+│   │   │   │   │   ├── index.css
+│   │   │   │   │   ├── reset.css
+│   │   │   │   ├── shared
+│   │   │   │   │   ├── topnav.css
+│   │   │   │   ├── all_posts.css
+│   │   │   │   ├── category_a.css
+│   │   │   │   ├── category_b.css
+│   │   │   │   ├── category_c.css
+│   │   │   │   ├── categorypage.css
+│   │   │   │   ├── create_post.css
+│   │   │   │   ├── edit.css
+│   │   │   │   ├── login.css
+│   │   │   │   ├── main.css
+│   │   │   │   ├── post_detail.css
+│   │   │   │   ├── search.css
+│   │   │   │   ├── signup_done.css
+│   │   │   │   ├── signup.css
+│   │   │   ├── js
+│   │   │   │   ├── allPost.js
+│   │   │   │   ├── backControl.js
+│   │   │   │   ├── category.js
+│   │   │   │   ├── createPost.js
+│   │   │   │   ├── editPost.js
+│   │   │   │   ├── login.js
+│   │   │   │   ├── main.js
+│   │   │   │   ├── placeFrame.js
+│   │   │   │   ├── postDetail.js
+│   │   │   │   ├── search.js
+│   │   │   │   ├── signup.js
+│   │   │   │   ├── topnav.js
+│   │   │   │   ├── weather.js
+│   │   ├── templates
+│   │   │   ├── shared
+│   │   │   │   ├── _topnav.html
+│   │   │   ├── base.html
+│   └── main
+│       ├── __init__.py
+│       ├── admin.py
+│       ├── apps.py
+│       ├── forms.py
+│       ├── models.py
+│       ├── tests.py
+│       ├── urls.py
+│       ├── utils.py
+│       ├── views.py
+│       ├── templates
+│       │   ├── all_posts.html
+│       │   ├── cateogrypage.html
+│       │   ├── create_post.html
+│       │   ├── edit_post.html
+│       │   ├── firstpage.html
+│       │   ├── mainpage.html
+│       │   ├── post_detail.html
+│       │   ├── search.html
+│       │   ├── secondpage_a.html
+│       │   ├── secondpage_b.html
+│       │   ├── secondpage_c.html
+│       │   ├── signup_done.html
+│       │   ├── signup.html
 
 ```
 
