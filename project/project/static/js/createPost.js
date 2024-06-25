@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 제목과 내용 검증 정규 표현식
   const titleRegex = /^[\s\S]{1,8}$/;
-
   const contentRegex = /^[\s\S]{1,}$/;
 
   const tagRegex = /^#.+/;
