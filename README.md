@@ -1,19 +1,15 @@
-# 콩닥콩닥 : 캠퍼스 곳곳에 당신의 청춘을 기록하세요.
+# 콩닥콩닥
+
+## 대학생활을 기억하는 방식을 바꾸다.
 
 ![readme_mockup2](./images/intro.png)
-
-- 배포 URL : https://ohmycode-readme.netlify.app
-- Test ID : readme@test.com
-- Test PW : 123123
 
 <br>
 
 ## 프로젝트 소개
 
-- README는 책을 좋아하는 사람들이 자신의 책 취향을 공유하고, 다 읽은 책을 판매할 수 있는 SNS입니다.
-- 개인의 프로필 페이지에 좋아하는 구절 등 책에 대한 정보를 작성하고 판매하고 싶은 책을 등록할 수 있습니다.
-- 검색을 통해 책 취향이 비슷한 다른 유저들의 피드를 구경할 수 있습니다.
-- 다양한 유저들을 팔로우하며 마음에 드는 게시글에 좋아요를 누르거나 댓글을 작성할 수 있습니다.
+- 콩닥콩닥은 시간이 흐르면 그리워질 우리의 학창시절,입학부터 졸업까지 당신의 설렘을 간직해드립니다.
+- 캠퍼스 곳곳에 당신의 청춘을 기록하세요.
 
 <br>
 
@@ -30,7 +26,7 @@
 
 <br>
 
-## ✏️ 레포지토리 실행법
+## ✏️ 사용방법
 
 ## 🍎 Mac
 
@@ -117,12 +113,58 @@ python manage.py runserver
 
 <br>
 
-## 2. 브랜치 전략
+## 2. 협업 전략
 
-### 브랜치 전략
+### Git-flow 전략
 
 - Git-flow 전략을 기반으로 main, develop 브랜치와 feature 보조 브랜치를 운용했습니다.
 - main, develop, Feat 브랜치로 나누어 개발을 하였습니다. - **main** 브랜치는 무결성 검증 이후 단계에서만 사용하는 브랜치입니다. - **develop** 브랜치는 개발 단계에서 git-flow의 master 역할을 하는 브랜치입니다. - **Feat** 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용하고 merge 후 각 브랜치를 삭제해주었습니다.
+
+## GitHub Role
+
+- 사용자는 먼저 Upstream Repository를 자신의 GitHub 계정으로 포크(fork)하고, 이 포크(fork)된 Origin Repository를 로컬 컴퓨터로 **Clone**하여 작업합니다.
+
+- 그 후 개발한 변경 사항을 Origin Repository로 **Push**합니다. 이후 Upstream Repository로 풀 **PR**를 보내 변경 사항을 제안합니다.
+
+- PR이 완료 된 후 Upstream Repository의 최신 변경 사항을 가져오기 위해 Local에서 풀(pull)을 사용합니다.
+
+### 개발을 시작할 때
+
+1. 개발을 시작할 때는 Upstream Repository에서 Issue를 생성합니다.
+2. 이후 Issue에서 Origin Repository의 Dev Branch에서 새로운 Branch를 생성합니다
+   - 이때 브랜치 이름은 다음을 따릅니다.
+   - **새로운 기능 개발 : feature/#[Issue의 번호]**
+   - **버그 픽스 : fix/#[Issue의 번호]**
+   - **기능 리팩토링 : refactor/#[Issue의 번호]**
+3. Loacl에서 Fetch를 통해 만든 New Branch(feature or fix or refactor)을 들고옵니다.
+4. 해당 Branch로 checkout 이후 기능 개발을 진행합니다.
+
+### 개발을 종료할 때
+
+1. 기능 개발이 종료되면 Origin Repository의 Branch(feature or fix or refactor)로 변경 사항을 Push 합니다.
+2. Origin Repository에서 Upstream Repository로 PR을 보냅니다.
+3. Code Review 이후 마지막으로 Approve한 사람은 **Squash And Merge**를 합니다.
+4. PR이 **Squash And Merge**되면 Local에서는 dev Branch로 checkout합니다.
+5. Local에서 Upstream Repository의 dev Branch를 pull 받습니다.
+6. 마지막으로 Origin Repository의 dev Branch를 Update하기 위해 Push를 해줍니다.
+
+### Main Branch가 갱신될 때
+
+1. 만약 Release Version을 낼 때는 Upstream의 dev Branch에서 main Branch로 PR을 날립니다.
+2. 해당 Repository의 모든 사용자가 Code를 재확인한 후 Merge를 합니다.
+
+## Commit & PR Convention
+
+| Commit Type | Description                                                    |
+| ----------- | -------------------------------------------------------------- |
+| Feat        | 기능 개발                                                      |
+| Fix         | 버그 수정                                                      |
+| Docs        | 문서 수정                                                      |
+| Style       | 코드 formatting, 세미콜론 누락 등 코드 자체의 변경이 없는 경우 |
+| Refactor    | 코드 리팩토링                                                  |
+| Chore       | package manager 수정 등                                        |
+| Design      | CSS 등 사용자 UI 변경                                          |
+
   <br>
 
 ## 3. 프로젝트 구조
@@ -220,7 +262,7 @@ python manage.py runserver
 
 <br>
 
-## 5. 개발 기간 및 작업 관리
+## 4. 개발 기간 및 작업 관리
 
 ### 개발 기간
 
@@ -235,7 +277,7 @@ python manage.py runserver
 
 <br>
 
-## 7. 페이지별 기능
+<!-- ## 7. 페이지별 기능
 
 ### [초기화면]
 
@@ -486,106 +528,4 @@ python manage.py runserver
     - WOFF2 포맷을 추가하고 가장 우선적으로 적용되도록 선언했습니다.
     - 서브셋 폰트로 교체해 용량을 줄였습니다.
 
-<br>
-
-## 10. 프로젝트 후기
-
-### 🍊 고지연
-
-깃헙을 통한 협업에 익숙해지는 것, 서로 감정 상하지 않고 무사히 마무리하는 것이 1차적인 목표였어서 항상 이 부분을 명심하면서 작업했습니다.
-각자 페이지를 작업하고 합치는 과정에서 마주친 버그들이 몇 있었는데, 시간에 쫓기느라 해결하기에 급급해서 제대로 트러블슈팅 과정을 기록하지 못한 게 살짝 아쉬운 부분으로 남습니다. 그래도 2022년 한 해 동안 가장 치열하게 살았던 한 달인 것 같습니다. 조원들 모두에게 고생했다고 전하고 싶습니다🧡
-
-<br>
-
-### 👻 김민제
-
-여러모로 많은 것들을 배울 수 있었던 한 달이었습니다. 혼자서는 할 수 없었던 일이라는 것을 너무 잘 알기에 팀원들에게 정말 감사하다는 말 전하고 싶습니다. 개인적으로 아쉬웠던 부분은 기한 내에 기능을 구현하는 데에만 집중하면서 트러블 슈팅이나 새로 배웠던 것들을 체계적으로 기록하지 못했다는 점입니다. 이렇게 느낀 바가 있으니 이후의 제가 잘 정리하면서 개발할 거라 믿습니다… 하하 다들 수고하셨습니다!!!!
-
-<br>
-
-### 😎 양희지
-
-팀 프로젝트 시작에 앞서 초기 설정을 진행하며 체계적인 설계의 중요성을 느꼈습니다. 앞으로는 점점 더 체계적이고 효율적으로 프로젝트를 진행할 수 있도록 발전하고 싶습니다.
-정규 수업 직후에 프로젝트를 진행하면서 배운 내용을 직접 구현하는 과정이 어색했지만 어떤 부분이 부족한지 알 수 있는 기회였습니다. 스스로 최대한 노력해보고 팀원들과 함께 해결해 나가면서 협업의 장점을 체감할 수 있었습니다. 하지만 빠르게 작업을 진행하면서 팀원들과 함께 해결한 이슈가 어떤 이슈이며 어떻게 해결했는지에 대해 자세히 작성하지 못한 것이 아쉽습니다.
-’멋쟁이 사자처럼’이라는 같은 목표를 가진 집단에서 프로젝트에 함께할 수 있는 소중한 경험이었습니다. 함께 고생한 조원들 모두 고생하셨습니다! 앞으로도 화이팅해서 함께 목표를 이뤄가고 싶습니다.
-
-<br>
-
-### 🐬 지창언
-
-컨벤션을 정하는 것부터 Readme 파일 작성까지 전 과정을 진행하려니 처음 생각보다 많은 에너지를 썼어요. 좋은 의미로 많이 썼다기보다, 제 능력을 십분 발휘하지 못해서 아쉬움이 남는 쪽입니다. 개발한다고 개발만 해서는 안 된다는 것을 몸소 느껴보는 기간이었던 것 같습니다. 이번 기회로 프로젝트를 진행하면서, 제가 잘하는 점과 부족한 점을 확실하게 알고 가는 건 정말 좋습니다. 기술적인 부분에 있어서는 리액트의 컴포넌트화가 주는 장점을 알았습니다. 조금 느린 개발이 되었을지라도 코드 가독성 부분에 있어서 좋았고, 오류가 발생해도 전체가 아닌 오류가 난 컴포넌트와 근접한 컴포넌트만 살펴보면 수정할 수 있는 부분이 너무 편했습니다. 모두 고생 참 많으셨고 리팩토링을 통해 더 나은 프로젝트 완성까지 화이팅입니다.
-
-# GitHub Role
-
-해당 Repository는 다음과 같은 규칙을 따르고 있습니다.
-
-## GitHub Branch
-
-### Flow Strategy
-
-- 사용자는 먼저 Upstream Repository를 자신의 GitHub 계정으로 포크(fork)하고, 이 포크(fork)된 Origin Repository를 로컬 컴퓨터로 **Clone**하여 작업합니다.
-
-- 그 후 개발한 변경 사항을 Origin Repository로 **Push**합니다. 이후 Upstream Repository로 풀 **PR**를 보내 변경 사항을 제안합니다.
-
-- PR이 완료 된 후 Upstream Repository의 최신 변경 사항을 가져오기 위해 Local에서 풀(pull)을 사용합니다.
-
-### 개발을 시작할 때
-
-1. 개발을 시작할 때는 Upstream Repository에서 Issue를 생성합니다.
-2. 이후 Issue에서 Origin Repository의 Dev Branch에서 새로운 Branch를 생성합니다
-   - 이때 브랜치 이름은 다음을 따릅니다.
-   - **새로운 기능 개발 : feature/#[Issue의 번호]**
-   - **버그 픽스 : fix/#[Issue의 번호]**
-   - **기능 리팩토링 : refactor/#[Issue의 번호]**
-3. Loacl에서 Fetch를 통해 만든 New Branch(feature or fix or refactor)을 들고옵니다.
-4. 해당 Branch로 checkout 이후 기능 개발을 진행합니다.
-
-### 개발을 종료할 때
-
-1. 기능 개발이 종료되면 Origin Repository의 Branch(feature or fix or refactor)로 변경 사항을 Push 합니다.
-2. Origin Repository에서 Upstream Repository로 PR을 보냅니다.
-3. Code Review 이후 마지막으로 Approve한 사람은 **_Squash And Merge_**를 합니다.
-4. PR이 **_Squash And Merge_**되면 Local에서는 dev Branch로 checkout합니다.
-5. Local에서 Upstream Repository의 dev Branch를 pull 받습니다.
-6. 마지막으로 Origin Repository의 dev Branch를 Update하기 위해 Push를 해줍니다.
-
-### Main Branch가 갱신될 때
-
-1. 만약 Release Version을 낼 때는 Upstream의 dev Branch에서 main Branch로 PR을 날립니다.
-2. 해당 Repository의 모든 사용자가 Code를 재확인한 후 Merge를 합니다.
-
-## Branch Naming Convention
-
-| Commit Type | Description           |
-| ----------- | --------------------- |
-| Main        | 테스트 완료 후 배포용 |
-| Test        | A/B 테스트용          |
-| QA          | QA용                  |
-| Dev         | 개발 커밋 통합용      |
-| Feat        | 기능 개발용           |
-| Fix         | 버그 수정용           |
-| Refactor    | 코드 리팩토링         |
-
-## Commit Convention
-
-| Commit Type | Description                                                    |
-| ----------- | -------------------------------------------------------------- |
-| Feat        | 기능 개발                                                      |
-| Fix         | 버그 수정                                                      |
-| Docs        | 문서 수정                                                      |
-| Style       | 코드 formatting, 세미콜론 누락 등 코드 자체의 변경이 없는 경우 |
-| Refactor    | 코드 리팩토링                                                  |
-| Chore       | package manager 수정 등                                        |
-| Design      | CSS 등 사용자 UI 변경                                          |
-
-## PR Convention
-
-| Icon | 사용법       | Description              |
-| ---- | ------------ | ------------------------ |
-| 🎨   | `:art`       | 코드 구조/서식 개선      |
-| ⚡️  | `:zap`       | 성능 향상                |
-| 🔥   | `:fire`      | 코드/파일 삭제           |
-| 🐛   | `:bug`       | 버그 수정                |
-| 🚑   | `:ambulance` | 긴급 수정                |
-| ✨   | `:sparkles`  | 새로운 기능 도입         |
-| 💄   | `:lipstick`  | UI/스타일 파일 추가/수정 |
+<br> -->
