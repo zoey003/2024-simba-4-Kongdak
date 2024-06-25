@@ -11,9 +11,6 @@ from .utils import get_weather
 from django.utils import timezone
 from django.template.loader import render_to_string
 from django.utils.timezone import now
-from django.http import HttpResponse
-
-
 
 
 
@@ -63,13 +60,6 @@ def mainpage(request):
     # 현재 로그인된 사용자의 프로필 정보 가져오기
     user_profile = get_object_or_404(Profile, user=request.user)
 
-    ''' 
-    # 상위 3명
-    top_authors = Post.objects.values('author__username')\
-        .annotate(post_count=Count('author'))\
-        .order_by('-post_count')[:3]
-    '''
-
     # 현재 사용자가 작성한 게시물 수
     user_post_count = Post.objects.filter(author=request.user).count()
 
@@ -88,7 +78,7 @@ def mainpage(request):
     # 날씨 정보 가져오기
     weather_main = get_weather()
     #좋아요 
-    bookmarked_posts = request.user.bookmark.all()
+    bookmarked_posts = request.user.bookmark.all().order_by('-created_at') 
 
     context = {
         'user': request.user,
@@ -121,7 +111,7 @@ def secondpage_c(request):
 
 def categorypage(request, category, subcategory):
     # 현재 로그인된 사용자가 작성한 해당 카테고리와 서브카테고리의 게시물 필터링
-    posts = Post.objects.filter(author=request.user, category=category, subcategory=subcategory)
+    posts = Post.objects.filter(author=request.user, category=category, subcategory=subcategory).order_by('-created_at') 
     
     # 해당 카테고리와 서브카테고리에서 상위 3명의 작성자와 그들의 게시물 수를 가져오기
     top_authors = Post.objects.filter(category=category, subcategory=subcategory)\
@@ -314,9 +304,9 @@ def search_by_tag(request):
         # 태그에서 띄어쓰기 제거
         query = query.replace(' ', '')
         tags = [tag.strip() for tag in query.split('#') if tag.strip()]
-        posts = Post.objects.filter(tags__name__in=tags).distinct()
+        posts = Post.objects.filter(tags__name__in=tags).distinct().order_by('-created_at') 
     else:
-        posts = Post.objects.none()
+        posts = Post.objects.none().order_by('-created_at') 
 
     context = {
         'query': query,
@@ -337,6 +327,7 @@ def check_username(request):
     return JsonResponse({'error': '잘못된 요청입니다.'}, status=400)
 
 
+#from django.http import HttpResponse
 # def filter_by_date(request):
 #     if request.method == 'GET':
 #         start_year_selected = int(request.GET.get('start_year', 2024))

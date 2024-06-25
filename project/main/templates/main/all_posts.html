@@ -7,7 +7,7 @@
   <div class="posts-container"> 
     <div id="allview">모아보기</div>
     <p class="all_line"></p>
-    <form name="select-form" action="{% url 'filter_by_date' %}" method="get" id="select-form">
+    <form name="select-form" action="{% url 'all_posts' %}" method="get" id="select-form">
       {% csrf_token %}
       <div class="select-date">
         <select name="start_year" id="select-year" class="year-select">
@@ -111,3 +111,4 @@
   <script src="{% static 'js/allPost.js' %}"></script>
   <script src="{% static 'js/placeFrame.js' %}"></script>
   <script src="{% static 'js/backControl.js' %}"></script>
+{% endblock %}
