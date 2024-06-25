@@ -260,8 +260,14 @@ def all_posts(request):
     for post in posts:
         post.is_bookmarked = post in bookmarked_posts
 
-    return render(request, 'main/all_posts.html', {'posts': posts, 'bookmarked_posts': bookmarked_posts})
-    
+    return render(request, 'main/all_posts.html', {
+        'posts': posts, 
+        'bookmarked_posts': bookmarked_posts, 
+        'year_range': range(2024, now().year + 1), 
+        'year_selected': None, 
+        'start_month_selected': None, 
+        'end_month_selected': None
+    })    
 
 @login_required
 def bookmark(request, post_id):
@@ -314,19 +320,23 @@ def check_username(request):
 def filter_by_date(request):
     if request.method == 'GET':
         current_year = now().year
-        
-        year_range = range(2024, current_year + 1)
-
         year_selected = int(request.GET.get('year', now().year))
-        month_selected = int(request.GET.get('month', now().month))
+        start_month_selected = int(request.GET.get('start_month', 1))
+        end_month_selected = int(request.GET.get('end_month', 12))
 
         posts = Post.objects.filter(
             author=request.user,
             created_at__year=year_selected,
-            created_at__month=month_selected
+            created_at__month__gte=start_month_selected,
+            created_at__month__lte=end_month_selected
         )
 
-        html_content = render_to_string('main/all_posts.html', {'posts': posts, 'year_range': year_range, 'year_selected': year_selected, 'month_selected': month_selected})
+        html_content = render_to_string('main/all_posts.html', {
+            'posts': posts,
+            'year_selected': year_selected,
+            'start_month_selected': start_month_selected,
+            'end_month_selected': end_month_selected
+        })
         return HttpResponse(html_content)
     else:
         return redirect('all_posts')
