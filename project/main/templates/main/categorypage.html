@@ -40,7 +40,8 @@
         >
           <div>{{post.created_at|date:"Y.m.d"}}</div>
           <div>{{post.title }}</div>
-          <div>{{post.weather}}</div>
+          <div class="weather-list" weather-data="{{post.weather}}">
+            <img class="weather-img" src="" alt="날씨"></div>
         </a>
         {% endfor %}
       </div>
@@ -65,5 +66,6 @@
 </script>
 <script src="{% static "js/category.js" %}"></script>
 <script src="{% static "js/backControl.js" %}"></script>
+
 
 {% endblock %}

@@ -144,6 +144,7 @@ a {
 .best-title {
   padding: 0.1rem;
   border-bottom: 1px solid black;
+  font-size: 1rem;
 }
 
 .best-title {
@@ -222,18 +223,20 @@ a {
 .best-box p:nth-child(1) {
   display: flex;
   justify-content: start;
-  width: 30%;
+  width: 35%;
 }
 .best-box p:nth-child(2) {
   display: flex;
   flex: 1;
-  justify-content: center;
+  justify-content: start;
   width: 40%;
+  text-align: start;
 }
 .best-box p:nth-child(3) {
   max-width: 30%;
   display: flex;
   justify-content: center;
+
   white-space: nowrap;
   font-size: 0.7rem;
 }
@@ -272,17 +275,6 @@ a {
 
 .logout-view button {
   text-decoration-line: underline;
-}
-
-.footer-view {
-  width: 100%;
-  background: rgba(217, 217, 217, 0.5);
-  padding: 2rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
 .explain-item {
@@ -357,4 +349,24 @@ a {
 .blurred {
   filter: blur(5px) !important;
   pointer-events: none; /* Prevent interaction with blurred content */
+}
+p {
+  font-size: 1rem;
+}
+.footer-view {
+  width: 100%;
+  background: rgba(217, 217, 217, 0.5);
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-view p {
+  font-size: 0.7rem !important;
+}
+.search-view p {
+  color: #d9d9d9;
 }

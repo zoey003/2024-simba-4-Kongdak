@@ -5,7 +5,12 @@
   width: 80%;
   margin-top: 1rem;
 }
-#all_line {
+
+#allview {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.all_line {
   width: 100%;
   height: 1px;
   background: #000;
@@ -21,6 +26,7 @@
   flex-direction: row;
   width: 100%;
   gap: 0.7rem;
+  justify-content: end;
 }
 
 .select-date img {
@@ -33,13 +39,17 @@ select {
   border-radius: 0.5rem;
   border: 1px solid black;
 }
+
+#select-month {
+  width: 2.5rem;
+}
 .post-view {
   display: flex;
   min-width: 100%;
   /* gap: 0.8rem; */
   overflow-y: auto;
 
-  border-bottom: dashed 2px black;
+  border-bottom: dashed 1.5px black;
 }
 
 #post_none {

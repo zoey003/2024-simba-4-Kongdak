@@ -42,6 +42,18 @@
   <div class="search-view">
     <p>해시태그로 검색하기</p>
     <img class="search-img" src="{% static 'assets/images/search.svg'%}" alt=""/>
+  </div> 
+  <div class="week-view">
+    <div class="week-title">주간 랭킹</div>
+    <div class="week-detail">
+      {% for author in weekly_top_authors %}
+        <div class="week-box">
+          <p>{{ forloop.counter }}위</p>
+          <p>{{ author.author__username }}</p>
+          <p>{{ author.post_count }}</p>
+        </div>
+      {% endfor %}
+    </div>
   </div>
   <div class="info-view">
     <div class="info-title">내 정보</div>
@@ -55,18 +67,7 @@
       <div><img src="{% static 'assets/images/elephant.svg'%}" alt=""/></div>
     </div>
   </div>
-  <div class="week-view">
-    <div class="week-title">주간 랭킹</div>
-    <div class="week-detail">
-      {% for author in weekly_top_authors %}
-        <div class="week-box">
-          <p>{{ forloop.counter }}위</p>
-          <p>{{ author.author__username }}</p>
-          <p>{{ author.post_count }}</p>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
+ 
   <div class="best-view">
     <div class="best-title">최고의 순간들</div>
     <div class="best-detail">
@@ -109,4 +110,5 @@
   </script>
   <script src="{% static "js/main.js" %}"></script>
   <script src="{% static "js/weather.js" %}"></script>
+  <script src="{% static 'js/placeFrame.js' %}"></script>
 {% endblock %}
