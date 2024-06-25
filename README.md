@@ -69,7 +69,7 @@ python manage.py runserver
 
 ---
 
-# 💻 Windows
+## 💻 Windows
 
 ### python virtualenv를 이용한 가상환경 정의
 
@@ -264,7 +264,7 @@ python manage.py runserver
 
 ### 개발 기간
 
-- 전체 개발 기간 : 2024-06-16 ~ 2022-06-26
+- 전체 개발 기간 : 2024-06-16 ~ 2024-06-26
 
 <br>
 
