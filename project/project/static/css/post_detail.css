@@ -83,11 +83,25 @@
   font-weight: 400;
   line-height: normal;
   border: 1px solid #000;
-  gap: 1rem;
+  gap: 1.3rem;
 }
 
-.edit_frame2 > div {
+.edit_frame2 div {
   padding: 0.5rem;
+}
+.edit_frame2 > div:nth-child(1) {
+  width: 20%;
+}
+.tags-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  white-space: nowrap;
+  overflow: scroll;
+  overflow-y: hidden;
+}
+.tags-container::-webkit-scrollbar {
+  display: none;
 }
 .edit_frame3 {
   display: flex;

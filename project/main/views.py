@@ -13,6 +13,10 @@ from django.template.loader import render_to_string
 from django.utils.timezone import now
 from django.http import HttpResponse
 
+
+
+
+
 def firstpage(request):
     return render(request, 'main/firstpage.html')
 
@@ -305,6 +309,7 @@ def check_username(request):
         }
         return JsonResponse(response)
     return JsonResponse({'error': '잘못된 요청입니다.'}, status=400)
+
 
 def filter_by_date(request):
     if request.method == 'GET':

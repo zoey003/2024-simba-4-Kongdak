@@ -30,13 +30,13 @@
   </div>
   <div class="explain-view">
     <div class="explain-box">
-      <div class="explain-item">a</div>사과/경영관, 혜화관, 대운동장, 학술문화관
+      <a href="{% url 'secondpage_a' %}" class="explain-item">a</a>사과/경영관, 혜화관, 대운동장, 학술문화관
     </div>
     <div class="explain-box">
-      <div class="explain-item">b</div>명진관, 법학관, 신공학관, 중앙도서관, 상록원, 팔정도
+      <a href="{% url 'secondpage_a' %}" class="explain-item">b</a>명진관, 법학관, 신공학관, 중앙도서관, 상록원, 팔정도
     </div>
     <div class="explain-box">
-      <div class="explain-item">c</div>만해광장, 원흥관, 학림관, 정보문화관 P / Q, 학생회관
+      <a href="{% url 'secondpage_a' %}" class="explain-item">c</a>만해광장, 원흥관, 학림관, 정보문화관 P / Q, 학생회관
     </div>
   </div>
   <div class="search-view">
@@ -74,7 +74,7 @@
         <a href="{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}?next={% url 'mainpage' %}" class="best-box">
           <p>{{ post.created_at|date:"Y.m.d" }}</p>
           <p>{{ post.title }}</p>
-          <p>{{ post.subcategory }}</p>
+          <p class="place" data-category="{{post.category}}">{{ post.subcategory }}</p>
         </a>
       {% endfor %}
     </div>

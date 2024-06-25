@@ -4,6 +4,7 @@
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 7fr 3fr;
   margin-top: 3rem;
+  font-size: 1rem;
 }
 
 .item1 {
@@ -14,6 +15,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  word-spacing: 0.2rem;
+}
+
+.place {
+  max-width: 3rem;
+  border-radius: 8px;
+  text-align: center;
+  padding: 5px;
+  font-size: 0.85rem;
+  text-align: center;
 }
 
 p,
@@ -30,6 +41,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  letter-spacing: 0.05rem;
 }
 
 .item3 {
@@ -203,7 +215,7 @@ a {
 .best-box {
   padding-bottom: 0.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   border-bottom: 2px dotted black;
 }
 
@@ -214,13 +226,16 @@ a {
 }
 .best-box p:nth-child(2) {
   display: flex;
+  flex: 1;
   justify-content: center;
   width: 40%;
 }
 .best-box p:nth-child(3) {
-  width: 30%;
+  max-width: 30%;
   display: flex;
-  justify-content: end;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 0.7rem;
 }
 
 .collection-view {

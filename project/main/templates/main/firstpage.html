@@ -23,13 +23,12 @@
         placeholder="비밀번호"
       />
       <div id="error">*잘못된 아이디나 비밀번호입니다.</div>
-      <button type="submit" id="loginButton" disabled>
-        <p>로그인</p>
-      </button>
+      <button type="submit" id="loginButton" disabled>로그인</button>
+
+      <div class="signup-view">
+        <a href="{% url 'signup' %}">회원가입</a>
+      </div>
     </form>
-  </div>
-  <div class="signup-view">
-    <a href="{% url 'signup' %}">회원가입</a>
   </div>
   <div class="copyright-view">
     <p>Copyright ⓒ 2024. 동국대학교 멋쟁이사자처럼</p>

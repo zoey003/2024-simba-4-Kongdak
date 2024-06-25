@@ -22,11 +22,13 @@
   flex-direction: column;
   top: 20vh;
   gap: 1.2rem;
+  font-size: 0.8rem;
 }
 
 .title-view p:nth-child(2) {
   margin: 0.5rem 0;
-  font-size: 2rem;
+  font-size: 2.3rem;
+  letter-spacing: 0.2rem;
 }
 
 .input-view {
@@ -46,7 +48,7 @@ form {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.7rem;
 }
 
 #username,
@@ -58,25 +60,26 @@ form {
 }
 
 button {
-  background-color: black;
-  color: white;
+  color: black;
   display: flex;
   padding: 0.45rem 2.25rem;
   border-radius: 0.3125rem;
   cursor: pointer;
+  background-color: #d9d9d9;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
-button p {
-  margin: 0;
-  width: 100%;
+.login-color {
+  color: white !important;
+  background-color: black;
 }
 
 .signup-view {
   margin: 1rem;
   max-width: 90%;
-  position: absolute;
-  z-index: 2;
-  bottom: 15vh;
+  /* position: absolute;
+  z-index: 2; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,6 +87,7 @@ button p {
 
 .signup-view a {
   color: black;
+  text-decoration: underline;
 }
 
 .copyright-view {

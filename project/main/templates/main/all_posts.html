@@ -6,17 +6,46 @@
 
 
   <link rel="stylesheet" type="text/css" href="{% static 'css/all_posts.css' %}"/>
-  <div class="posts-container">
+  <div class="posts-container"> 
+    <p id="all_line"></p>
+<form name="select-form" action="{% url 'filter_by_date' %}" method="get" id="select-form">
+  {% csrf_token %}
+   <div class="select-date" >
+    <select name="year" id="select-year">
+      <option value="2024" {% if month_selected == 2024 %}selected{% endif %}>2024년</option>
+    </select>
+    <select name="month" id="select-month">
+      <!-- <option value="" {% if not month_selected %}selected{% endif %}>전체보기</option> -->
+      <option value="1" {% if month_selected == 1 %}selected{% endif %}>1월</option>
+      <option value="2" {% if month_selected == 2 %}selected{% endif %}>2월</option>
+      <option value="3" {% if month_selected == 3 %}selected{% endif %}>3월</option>
+      <option value="4" {% if month_selected == 4 %}selected{% endif %}>4월</option>
+      <option value="5" {% if month_selected == 5 %}selected{% endif %}>5월</option>
+      <option value="6" {% if month_selected == 6 %}selected{% endif %}>6월</option>
+      <option value="7" {% if month_selected == 7 %}selected{% endif %}>7월</option>
+      <option value="8" {% if month_selected == 8 %}selected{% endif %}>8월</option>
+      <option value="9" {% if month_selected == 9 %}selected{% endif %}>9월</option>
+      <option value="10" {% if month_selected == 10 %}selected{% endif %}>10월</option>
+      <option value="11" {% if month_selected == 11 %}selected{% endif %}>11월</option>
+      <option value="12" {% if month_selected == 12 %}selected{% endif %}>12월</option>
+    </select>
+    <button type="submit"><img src="{%static 'assets/images/search.svg'%}" id=""></button>
+  </div>
+
+</form>
+<div id="post_none" {% if posts %}style="display: none;"{% endif %}>작성한 글이 없습니다.</div>
+
     {% csrf_token %}
     {% for post in posts %}
       <div class="post-view">
+       
         <a href="{% url 'post_detail' category=post.category subcategory=post.subcategory post_id=post.id %}?next={% url 'all_posts' %}" class="post-item">
           <div>{{ post.created_at|date:"Y.m.d" }}</div>
           <div>{{ post.title }}</div>
-          <div class="place">{{ post.subcategory }}</div>
+          <div class="place" data-category="{{ post.category }}">{{ post.subcategory }}</div>
         </a>
         <button class="heart-btn" data="{{ post.id }}">
-          <img src="{% static "assets/images/heartRed.svg" if post.is_bookmarked else "assets/images/heartWhite.svg" %}" alt="" data-is_bookmarked="{{ post.is_bookmarked }}">
+          <img src="{% static 'assets/images/heartRed.svg' if post.is_bookmarked else 'assets/images/heartWhite.svg' %}" alt="" data-is_bookmarked="{{ post.is_bookmarked }}">
         </button>
       </div>
     {% endfor %}
@@ -26,5 +55,5 @@
     const redHeartUrl = '{% static "assets/images/heartRed.svg" %}';
     const whiteHeartUrl = '{% static "assets/images/heartWhite.svg" %}';
   </script>
-  <script src="{% static "js/allPost.js" %}"></script>
+  <script src="{% static 'js/allPost.js' %}"></script>
 {% endblock %}

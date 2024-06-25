@@ -9,8 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (username.trim() !== "" && password.trim() !== "") {
         loginButton.disabled = false;
-        loginButton.style.backgroundColor = "black";
-        loginButton.style.color = "white";
+        loginButton.classList.add("login-color");
       } else {
         loginButton.disabled = true;
       }

@@ -125,6 +125,7 @@ validCheckBtn.addEventListener("click", (event) => {
         idInfo.classList.remove("hidden-class");
         idInfo.classList.add("valid-text");
         idInfo.classList.remove("warning-text");
+        idTest.classList.add("valid-input");
         idInfo.textContent = "사용 가능한 아이디입니다.";
         idStatus = true;
       }
