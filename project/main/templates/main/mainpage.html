@@ -62,9 +62,9 @@
       <p class="p-info">{{ user_profile.nickname }}</p>
       <p class="p-info" id="sign-date-view">{{user.date_joined|date:"Y.m.d"}}
         입학</p>
-      <p class="p-info">나의 누적 추억 :
+      <p class="p-info" id="user_post_count" data-count="{{user_post_count}}">나의 누적 추억 :
         {{user_post_count}}개</p>
-      <div><img src="{% static 'assets/images/elephant.svg'%}" alt=""/></div>
+      <div><img src="" alt="" id="user_image" /></div>
     </div>
   </div>
  
@@ -107,6 +107,10 @@
     const cloudUrl = '{% static "assets/images/cloud.png" %}';
     const umbrellaUrl = '{% static "assets/images/umbrella.png" %}';
     const snowyUrl = '{% static "assets/images/snowy.png" %}';
+    const step1Url='{% static "assets/images/step1.svg" %}';
+    const step2Url='{% static "assets/images/step2.svg" %}';
+    const step3Url='{% static "assets/images/step3.svg" %}';
+ 
   </script>
   <script src="{% static "js/main.js" %}"></script>
   <script src="{% static "js/weather.js" %}"></script>
