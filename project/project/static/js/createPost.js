@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const titleRegex = /^(?!\s*$).{1,8}$/;
   const contentRegex = /^(?!\s*$).+$/;
 
+
   const tagRegex = /^#.+/;
 
   // 한글 입력 상태 확인 변수
